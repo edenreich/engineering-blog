@@ -1,4 +1,4 @@
-import { MarkdownPost } from "@/types/MarkdownPost";
+import { MarkdownPost } from '@/types/MarkdownPost';
 
 export async function getAvailableTags(
   posts: MarkdownPost[]
@@ -11,7 +11,7 @@ export async function getAvailableTags(
     if (post.metadata.draft === true) {
       return;
     }
-    post.metadata.tags.split(", ").forEach((tag: string) => tags.add(tag));
+    post.metadata.tags.split(', ').forEach((tag: string) => tags.add(tag));
   });
 
   return Array.from(tags);

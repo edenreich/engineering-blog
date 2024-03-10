@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface TagListProps {
   tags: string[];
@@ -34,8 +34,8 @@ const TagList: React.FC<TagListProps> = ({
             key={index}
             className={`px-4 py-2 text-lg rounded ${
               isSelected
-                ? "bg-blue-500 text-white"
-                : "bg-gray-200 text-gray-800"
+                ? 'bg-blue-500 text-white'
+                : 'bg-gray-200 text-gray-800'
             } cursor-pointer`}
             onClick={() => handleTagClick(tag)}
           >
