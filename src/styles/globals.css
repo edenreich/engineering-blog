@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background: #ffffff;
+}
+
+a {
+  color: #286ffc;
+  text-decoration: none;
+}
+
+.section:nth-child(odd) {
+    background-color: #e4e4e4;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+nav ul,
+nav li,
+nav ol {
+  margin-top: 0;
+  margin-left: 0;
+  padding: 0;
+  list-style: none;
+}
+
+ul,
+ol {
+  margin-top: 0.5rem;
+  margin-left: 2.5rem;
+  list-style: disc;
+}
+
+li {
+  margin-left: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #dee2e6;
+}
+
+th,
+td {
+  padding: 0.5rem;
+  border: 1px solid #dee2e6;
+}
+
+th {
+  background-color: #e9ecef;
+}
+
+blockquote {
+  margin: 0;
+  padding: 0 1rem;
+  color: #6a737d;
+  border-left: 0.25rem solid #dfe2e5;
+}
+
+blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+blockquote > :first-child {
+  margin-top: 0;
+}
+
+code {
+  padding: 0.2rem 0.4rem;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(27, 31, 35, 0.05);
+  border-radius: 3px;
+}
+
+@media screen and (max-width: 600px) {
+  table {
+    font-size: 14px;
+  }
+
+  th,
+  td {
+    padding: 0.25rem;
+    font-size: 12px;
+  }
+}
