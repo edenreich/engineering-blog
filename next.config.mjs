@@ -2,7 +2,7 @@
 const nextConfig = {
   output: "export",
   distDir: "out",
-  basePath: "/engineering-blog",
+  basePath: "/",
 };
 
 export default nextConfig;
