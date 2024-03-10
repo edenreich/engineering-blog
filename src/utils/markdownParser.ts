@@ -11,6 +11,7 @@ import remarkGfm from 'remark-gfm';
 import langHttp from 'highlight.js/lib/languages/http';
 import langNginx from 'highlight.js/lib/languages/nginx';
 import langDockerfile from 'highlight.js/lib/languages/dockerfile';
+import langYaml from 'highlight.js/lib/languages/yaml';
 import { MarkdownPost } from '@/types/MarkdownPost';
 
 export async function fetchMarkdownPosts(): Promise<MarkdownPost[]> {
@@ -36,6 +37,7 @@ export async function fetchMarkdownPosts(): Promise<MarkdownPost[]> {
             http: langHttp,
             nginx: langNginx,
             dockerfile: langDockerfile,
+            yaml: langYaml,
           },
         })
         .use(rehypeStringify)
