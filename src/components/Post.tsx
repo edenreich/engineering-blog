@@ -11,7 +11,7 @@ interface PostProps {
 
 const Post: React.FC<PostProps> = ({ title, date, excerpt, imageUrl, url }) => {
   return (
-    <div className="bg-white rounded-lg shadow-lg p-4">
+    <div className="bg-white rounded-lg shadow-lg p-4 flex flex-col justify-between">
       <Image
         width={400}
         height={600}

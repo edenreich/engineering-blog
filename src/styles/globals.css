@@ -25,8 +25,9 @@ h1 {
 h2 {
   font-size: 2rem;
   font-weight: bold;
-  margin-top: 1.25rem;
+  margin-top: 2.25rem;
   margin-bottom: 0.75rem;
+  line-height: 1.2;
 }
 
 h3 {
@@ -88,6 +89,12 @@ blockquote > :last-child {
 
 blockquote > :first-child {
   margin-top: 0;
+}
+
+pre {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  overflow: auto;
 }
 
 code {

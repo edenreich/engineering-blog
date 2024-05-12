@@ -8,8 +8,8 @@ import TagList from '@/components/TagList';
 import Head from 'next/head';
 
 interface HomeProps {
-    posts: MarkdownPost[];
-    tags: string[];
+  posts: MarkdownPost[];
+  tags: string[];
 }
 
 const Home: React.FC<HomeProps> = ({ posts, tags }) => {
@@ -25,7 +25,9 @@ const Home: React.FC<HomeProps> = ({ posts, tags }) => {
     }
 
     return posts.filter((post: MarkdownPost) => {
-      return selectedTags.some((selectedTag) => post.metadata.tags.includes(selectedTag));
+      return selectedTags.some((selectedTag) =>
+        post.metadata.tags.includes(selectedTag)
+      );
     });
   };
 
@@ -56,22 +58,28 @@ const Home: React.FC<HomeProps> = ({ posts, tags }) => {
           anything else I find interesting.
         </p>
         <div className="container">
-          <TagList tags={tags} selectedTags={selectedTags} onTagClick={handleTagClick} />
+          <TagList
+            tags={tags}
+            selectedTags={selectedTags}
+            onTagClick={handleTagClick}
+          />
         </div>
       </section>
       <section>
         <h2 className="text-4xl font-bold mt-5 mb-5 ml-5">Blog Posts</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {sortByDate(filterPostsBySelectedTags(filterDrafts(posts))).map((post) => (
-            <Post 
-              key={post.slug}
-              title={post.metadata.title}
-              date={post.metadata.date}
-              excerpt={post.metadata.excerpt}
-              imageUrl={`/img/posts/${post.metadata.thumbnail}`}
-              url={`/${post.metadata.slug}`}
-            />
-          ))}
+          {sortByDate(filterPostsBySelectedTags(filterDrafts(posts))).map(
+            (post) => (
+              <Post
+                key={post.slug}
+                title={post.metadata.title}
+                date={post.metadata.date}
+                excerpt={post.metadata.excerpt}
+                imageUrl={`/img/posts/${post.metadata.thumbnail}`}
+                url={`/${post.metadata.slug}`}
+              />
+            )
+          )}
         </div>
       </section>
     </>
