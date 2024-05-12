@@ -1,6 +1,5 @@
 ---
 title: 'Kubernetes for local development with Kubernetes in Docker(KinD)'
-description: 'Kubernetes for local development with Kubernetes in Docker(KinD)'
 date: 'April 19 2020'
 thumbnail: 'thumbnail_kind.png'
 tags: 'kubernetes, development-tools'

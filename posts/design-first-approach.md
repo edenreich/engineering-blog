@@ -1,6 +1,5 @@
 ---
 title: 'Design-First Approach with OpenAPI'
-description: 'Explore the benefits of adopting a design-first strategy using the OpenAPI Specification (OAS) for developing and documenting APIs, enhancing collaboration, and maintaining a flexible, language-agnostic workflow.'
 date: 'May 12 2024'
 thumbnail: 'openapi.png'
 tags: 'openapi, api, sdl'

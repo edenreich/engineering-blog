@@ -1,6 +1,5 @@
 ---
 title: 'NextJS Static Site Generator(SSG)'
-description: 'Build a blazing fast blog using NextJS static site generator(SSG)'
 date: 'January 29 2022'
 thumbnail: 'nextjs.png'
 tags: 'nextjs, ssg, javascript'

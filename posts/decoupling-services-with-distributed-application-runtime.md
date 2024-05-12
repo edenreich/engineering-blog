@@ -1,6 +1,5 @@
 ---
 title: 'Loosely coupled Micro-services with Distributed Application Runtime(DAPR)'
-description: "Distributed Application Runtime is a great way to decouple application's specific logic from operational distributed messaging"
 date: 'April 09 2022'
 thumbnail: 'distributed_application_runtime.svg'
 tags: 'event-driven architecture, go'
