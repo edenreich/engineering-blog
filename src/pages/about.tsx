@@ -17,21 +17,20 @@ const AboutPage: React.FC = () => {
           <Image
             width={500}
             height={600}
-            src="/img/profile_600.png"
+            src="/img/profile.png"
             alt="About Us"
             className="md:w-1/3 rounded-lg shadow-md mb-4 md:mb-0"
           />
           <h2 className="text-center">Who am I?</h2>
           <div className="container text-center">
             <p className="text-lg">
-              I&apos;m a passionate developer specializing in C++, C#, PHP, Typescript, Javascript, Rust, CSS and some Go.
+              I&apos;m a passionate developer specializing in C++, C#, PHP,
+              Typescript, Javascript, Rust, CSS and some Go.
             </p>
             <p className="text-lg">
               I like to build desktop as well as web applications.
             </p>
-            <p className="text-lg">
-              I&apos;m based in Berlin.
-            </p>
+            <p className="text-lg">I&apos;m based in Berlin.</p>
           </div>
         </div>
       </section>
