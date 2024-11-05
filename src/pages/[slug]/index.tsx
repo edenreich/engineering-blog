@@ -34,18 +34,18 @@ const Post: React.FC<PostProps> = ({ post }) => {
       </section>
       <section>
         <div className="px-4 sm:px-10">
-        <Giscus
-          repo="edenreich/engineering-blog"
-          repoId="R_kgDOLeQUkA"
-          category="General"
-          categoryId="DIC_kwDOLeQUkM4Cj_sa"
-          mapping="pathname"
-          reactionsEnabled="1"
-          emitMetadata="0"
-          inputPosition="top"
-          theme="light"
-          lang="en"
-        />
+          <Giscus
+            repo="edenreich/engineering-blog"
+            repoId="R_kgDOLeQUkA"
+            category="General"
+            categoryId="DIC_kwDOLeQUkM4Cj_sa"
+            mapping="pathname"
+            reactionsEnabled="1"
+            emitMetadata="0"
+            inputPosition="top"
+            theme="light"
+            lang="en"
+          />
         </div>
       </section>
     </>
