@@ -38,7 +38,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const posts = await fetchMarkdownPosts();
   const paths = posts.map((post) => ({
-    params: { slug: post.metadata.slug },
+    params: { slug: post.slug },
   }));
 
   return {
@@ -50,7 +50,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<PostProps> = async ({ params }) => {
   const slug = params?.slug as string;
   const posts = await fetchMarkdownPosts();
-  const post = posts.find((p) => p.metadata.slug === slug);
+  const post = posts.find((p) => p.slug === slug);
 
   if (!post) {
     return {

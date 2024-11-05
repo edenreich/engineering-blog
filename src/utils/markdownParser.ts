@@ -13,7 +13,7 @@ import langNginx from 'highlight.js/lib/languages/nginx';
 import langDockerfile from 'highlight.js/lib/languages/dockerfile';
 import langYaml from 'highlight.js/lib/languages/yaml';
 import langGolang from 'highlight.js/lib/languages/go';
-import { MarkdownPost } from '@/types/MarkdownPost';
+import { MarkdownPost, Metadata } from '@/types/MarkdownPost';
 
 export async function fetchMarkdownPosts(): Promise<MarkdownPost[]> {
   const postsDirectory = path.join(process.cwd(), 'posts');
@@ -45,11 +45,19 @@ export async function fetchMarkdownPosts(): Promise<MarkdownPost[]> {
         .use(rehypeStringify)
         .process(content);
 
+      const metadata: Metadata = {
+        title: data.title as string,
+        excerpt: data.excerpt as string,
+        thumbnail: data.thumbnail as string | undefined,
+        date: data.date as string,
+        tags: data.tags.split(', '),
+      };
+
       return {
         slug,
-        metadata: data,
+        metadata: metadata,
         content: processedContent.toString(),
-      };
+      } as MarkdownPost;
     })
   );
 

@@ -11,7 +11,8 @@ export async function getAvailableTags(
     if (post.metadata.draft === true) {
       return;
     }
-    post.metadata.tags.split(', ').forEach((tag: string) => tags.add(tag));
+
+    post.metadata.tags.forEach((tag: string) => tags.add(tag));
   });
 
   return Array.from(tags);

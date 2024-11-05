@@ -1,8 +1,8 @@
-import { Html, Head, Main, NextScript } from 'next/document';
+import { Html, Head, Main, NextScript, DocumentProps } from 'next/document';
 import Footer from '@/components/Footer';
 import Navigation from '@/components/Navigation';
 
-function MyDocument(props: any) {
+function MyDocument(props: DocumentProps) {
   const active = (pathname: string) =>
     props.__NEXT_DATA__.page === pathname ? 'text-xl font-bold' : '';
   return (

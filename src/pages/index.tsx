@@ -76,7 +76,7 @@ const Home: React.FC<HomeProps> = ({ posts, tags }) => {
                 date={post.metadata.date}
                 excerpt={post.metadata.excerpt}
                 imageUrl={`/img/posts/${post.metadata.thumbnail}`}
-                url={`/${post.metadata.slug}`}
+                url={`/${post.slug}`}
               />
             )
           )}
