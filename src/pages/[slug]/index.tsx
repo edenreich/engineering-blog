@@ -2,6 +2,7 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import { fetchMarkdownPosts } from '@/utils/markdownParser';
 import type { MarkdownPost } from '@/types/MarkdownPost';
 import Head from 'next/head';
+import Giscus from '@giscus/react';
 
 interface PostProps {
   post: MarkdownPost;
@@ -30,6 +31,22 @@ const Post: React.FC<PostProps> = ({ post }) => {
           className="container text-xl sm:text-2xl lg:text-3xl mt-10 mb-10 break-words"
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
+      </section>
+      <section>
+        <div className="px-4 sm:px-10">
+        <Giscus
+          repo="edenreich/engineering-blog"
+          repoId="R_kgDOLeQUkA"
+          category="General"
+          categoryId="DIC_kwDOLeQUkM4Cj_sa"
+          mapping="pathname"
+          reactionsEnabled="1"
+          emitMetadata="0"
+          inputPosition="top"
+          theme="light"
+          lang="en"
+        />
+        </div>
       </section>
     </>
   );
