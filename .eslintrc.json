@@ -1,8 +1,5 @@
 {
-  "extends": [
-    "next/core-web-vitals",
-    "next/typescript"
-  ],
+  "extends": ["prettier", "next/core-web-vitals", "next/typescript"],
   "rules": {
     "indent": ["error", 2],
     "semi": ["error"],

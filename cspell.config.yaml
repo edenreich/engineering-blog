@@ -1,6 +1,10 @@
+---
+$schema: https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json
 version: '0.2'
 includeRegExpList:
   - posts/**/*.md
+ignorePaths:
+  - public
 words:
   - Abac
   - appversion
@@ -95,3 +99,5 @@ words:
   - usecs
   - usermod
   - Zipkin
+  - giscus
+  - vercel
