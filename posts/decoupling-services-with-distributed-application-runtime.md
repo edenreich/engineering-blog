@@ -70,12 +70,12 @@ spec:
   type: pubsub.redis
   version: v1
   metadata:
-  - name: redisHost
-    value: redis-master.development.svc.cluster.local:6379
-  - name: redisPassword
-    secretKeyRef:
-      name: redis
-      key: redis-password
+    - name: redisHost
+      value: redis-master.development.svc.cluster.local:6379
+    - name: redisPassword
+      secretKeyRef:
+        name: redis
+        key: redis-password
 auth:
   secretStore: kubernetes
 ```
@@ -93,9 +93,9 @@ spec:
   route: /orders
   pubsubname: pubsub
 scopes:
-- notification
-- billing
-- shipping
+  - notification
+  - billing
+  - shipping
 ---
 apiVersion: dapr.io/v1alpha1
 kind: Subscription
@@ -106,7 +106,7 @@ spec:
   route: /bills
   pubsubname: pubsub
 scopes:
-- order
+  - order
 ```
 
 The billing-subscription / bills topic has only one subscriber which is **order service** and order events are going to be published to all different subscribers specified in the scope(i.e **notification** service, **billing** service and **shipping** service), they will receive the message on the expected endpoint **/orders**.
@@ -115,12 +115,11 @@ When a service declare the endpoint **/orders** the message would be received as
 Last thing that is left to do, is to tell the different deployments that we need a Kubernetes [**sidecar container**](https://kubernetes.io/blog/2015/06/the-distributed-system-toolkit-patterns/#example-1-sidecar-containers) in our pods. Each sidecar container would be identified with a unique id. Also we need to tell it on what port the application is listening for connections. Those configurations could be deployed using Kubernetes annotations on the deployment manifest of each service. for **billing service** for example you would find the following annotations:
 
 ```yaml
-...
-      annotations:
-        dapr.io/enabled: "true"
-        dapr.io/app-id: "billing"
-        dapr.io/app-port: "8080"
-...
+---
+annotations:
+  dapr.io/enabled: 'true'
+  dapr.io/app-id: 'billing'
+  dapr.io/app-port: '8080'
 ```
 
 I'm also using a configmap to declare some environment variables to tell the application which topics will be used for publishing the messages, the application then knows to split it by comma and publish the events to all of the topics specified on that comma separated list.
@@ -160,9 +159,9 @@ metadata:
   name: tracing
 spec:
   tracing:
-    samplingRate: "1"
+    samplingRate: '1'
     zipkin:
-      endpointAddress: "http://zipkin.tracing.svc.cluster.local:9411/api/v2/spans"
+      endpointAddress: 'http://zipkin.tracing.svc.cluster.local:9411/api/v2/spans'
 ```
 
 Lastly, we just need to add annotation to each deployment that we want to use this configuration:
@@ -205,4 +204,3 @@ I kept the example project very simple without any SDK or client library so it's
 Please consider the example code as an example only.
 
 Hope you enjoyed reading this article.
-

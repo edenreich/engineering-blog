@@ -58,36 +58,40 @@ In this configuration, Kubernetes will wait for **10 seconds** before sending th
 ## Common Pitfalls
 
 ### Missing Startup Probes
+
 One common pitfall is neglecting to define startup probes for applications with long initialization times. Without a startup probe, liveness probes might incorrectly assume that the application is stuck or unresponsive, leading to repeated restarts. This can cause a cascade of failures, where the application never has enough time to fully start and stabilize.
 
 ### Insufficient Initial Delays
+
 Setting too short an initial delay for the startup probe can result in premature checks, which may fail and trigger unnecessary restarts. It’s crucial to accurately estimate and configure the initial delay based on the application's startup characteristics.
 
 ### Misconfigured Failure Thresholds
+
 Using a low failure threshold can also cause premature restarts. Ensure that the failure threshold is high enough to meet the application's worst-case startup time.
 
 ### Overlapping Probes
+
 Improper coordination between startup, liveness, and readiness probes can lead to conflicts. Ensure that the startup probe has sufficient time to complete before liveness and readiness probes take over.
 
 ## Best Practices for Using Startup Probes
 
 1. **Accurate Initial Delays:**
-Set `initialDelaySeconds` to a value that allows the application to complete its initial setup tasks before the probe checks its status.
+   Set `initialDelaySeconds` to a value that allows the application to complete its initial setup tasks before the probe checks its status.
 
 2. **Appropriate Check Intervals:**
-Configure `periodSeconds` to balance between frequent checks and allowing enough time for the application to progress in its startup.
+   Configure `periodSeconds` to balance between frequent checks and allowing enough time for the application to progress in its startup.
 
 3. **High Failure Thresholds:**
-Use a high `failureThreshold` to give applications enough time to start without being prematurely marked as failed.
+   Use a high `failureThreshold` to give applications enough time to start without being prematurely marked as failed.
 
 4. **Continues Checks with Liveness and Readiness Probes:**
-Once the application is started, liveness and readiness probes take over to ensure ongoing health and readiness to handle traffic.
+   Once the application is started, liveness and readiness probes take over to ensure ongoing health and readiness to handle traffic.
 
 5. **Monitor and Adjust:**
-Continuously monitor the application's startup behavior and adjust the startup probe configuration as necessary to align with any changes in the startup process.
+   Continuously monitor the application's startup behavior and adjust the startup probe configuration as necessary to align with any changes in the startup process.
 
 6. **Log and Debug:**
-Implement detailed logging within the application’s startup process to facilitate debugging when startup probes fail.
+   Implement detailed logging within the application’s startup process to facilitate debugging when startup probes fail.
 
 ## Example Scenario
 
@@ -109,5 +113,6 @@ In this configuration, the startup probe checks for the presence of a **/tmp/hea
 You might wonder if you could achieve the same result by setting a long **initialDelaySeconds** on the liveness and readiness probes. However, this approach is not ideal because it leads to duplicated values and does not provide the same flexibility and clarity as using a dedicated startup probe. Startup probes are specifically designed for this purpose, ensuring that the initialization phase is handled correctly without interfering with the ongoing health checks managed by liveness and readiness probes.
 
 ## Conclusion
+
 Startup probes are an essential in Kubernetes for managing the lifecycle of applications with long or complex startup sequences. They ensure that such applications have the necessary time to initialize fully before liveness and readiness probes begin their checks. By accurately configuring and utilizing startup probes, you can prevent premature restarts, ensuring that applications are healthy and ready to serve traffic once fully started. This enhances the resilience and reliability of your Kubernetes deployments.
 However, not every application requires a startup probe. They are typically needed for slow-starting applications, so use them wisely to avoid unnecessary complexity in your configurations.

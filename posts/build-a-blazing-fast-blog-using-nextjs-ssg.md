@@ -201,7 +201,9 @@ const mockedPages: Page[] = [
   },
 ];
 
-export const getStaticPaths: GetStaticPaths = async (): Promise<GetStaticPathsResult<Request>> => {
+export const getStaticPaths: GetStaticPaths = async (): Promise<
+  GetStaticPathsResult<Request>
+> => {
   // Get all existing paths from an API for generating static pages ahead of time
   // Probably use Contentful API to get this data
   // But for now let's mock that data
@@ -214,9 +216,13 @@ export const getStaticPaths: GetStaticPaths = async (): Promise<GetStaticPathsRe
   };
 };
 
-export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext): Promise<GetStaticPropsResult<Page>> => {
+export const getStaticProps: GetStaticProps = async (
+  context: GetStaticPropsContext
+): Promise<GetStaticPropsResult<Page>> => {
   // Lookup for a page by slug, this is where you'd use Contentful API
-  const page: Page = mockedPages.filter((page) => page.slug === context.params?.slug)[0];
+  const page: Page = mockedPages.filter(
+    (page) => page.slug === context.params?.slug
+  )[0];
 
   return {
     props: {
@@ -261,7 +267,14 @@ yarn build
 Now you can inspect **.next/server/pages** folder, there are a bunch of HTML files, a part of them are the **about.html**, **contact.html**, along aside there is json format for those pages, if you open the contact.json file for example you should see:
 
 ```json
-{ "pageProps": { "slug": "contact", "title": "Contact", "content": "Contact page" }, "__N_SSG": true }
+{
+  "pageProps": {
+    "slug": "contact",
+    "title": "Contact",
+    "content": "Contact page"
+  },
+  "__N_SSG": true
+}
 ```
 
 Those are the properties that NextJS internally would inject to your component when a client requests the **/contact** path.

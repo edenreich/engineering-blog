@@ -6,9 +6,10 @@ tags: 'k3s, kubernetes, raspberry pi, bare-metal'
 excerpt: "Creating your own kubernetes cluster on raspberry pi doesn't take much effort and it was a fun experience..."
 draft: false
 ---
+
 Creating your own kubernetes cluster on raspberry pi doesn't take much effort and it was a fun experience, in fact this blog at the time of writing this article is hosted on home made kubernetes. In this article i'm going to walk you through the process of having a production ready environment at your home.
 
-![Raspberry pi cluster](/img/posts/raspberry_pi_cluster.jpeg "Raspberry pi cluster")
+![Raspberry pi cluster](/img/posts/raspberry_pi_cluster.jpeg 'Raspberry pi cluster')
 
 ## [Prerequisites](#prerequisites)
 
@@ -24,9 +25,9 @@ You'll need to purchase the following equipment in order to follow along (budget
 - 2x [AmazonBasics USB hubs](https://www.amazon.de/dp/B076YNV36K/) approx. 50$/piece
 - 1x [Raspberry pi acrylic tower](https://www.amazon.de/dp/B07Y8VG933/?smid=A2HSFPQG9EH8HP) approx. 20$
 
-You would also need a cloudflare account, so we can put it infront of our cluster entry for higher security, and a single domain name registered. Personally I like [www.hover.com](https://www.hover.com/), they have good range of servers across the globe which means less time resolving your ip address, I also like their service. feel free however to purchase your domain by any other dns provider.
+You would also need a cloudflare account, so we can put it in front of our cluster entry for higher security, and a single domain name registered. Personally I like [www.hover.com](https://www.hover.com/), they have good range of servers across the globe which means less time resolving your ip address, I also like their service. feel free however to purchase your domain by any other dns provider.
 
-P.S: I'm not commiting to any of the above prices and dealers please make your own decisions regarding the purchase, these links are just to give you an idea of what I'm using to make it work.
+P.S: I'm not committing to any of the above prices and dealers please make your own decisions regarding the purchase, these links are just to give you an idea of what I'm using to make it work.
 
 ## [Getting Started](#getting-started)
 
@@ -36,7 +37,7 @@ Once your order with all of these parts arrived we can start by building the clu
 
 Let's place each raspberry pi on the raspberry pi tower and ensure all screws are tighten.
 
-![Raspberry pi tower](/img/posts/raspberry_pi_tower.jpeg "Raspberry pi tower")
+![Raspberry pi tower](/img/posts/raspberry_pi_tower.jpeg 'Raspberry pi tower')
 
 ### Power supply
 
@@ -44,7 +45,7 @@ To messure our monthly energy costs we'll first connect the **Gifort Energy Cost
 
 After we have a base where we can plugin different sockets, we'll take the **AmazonBasics USB hubs** and supply them with electricity from our above mentioned setup, connect them to the sockets and place them near the **Raspberry pi acrylic tower**.
 
-As a next step we'll prepare the cables for powering up the pi's, let's take the **USB type-A to type-C cables** and plug them into the USB slots where there is a small sign of battery near it, These our the only output that actually supplies electricty from our socket, the rest are just for connecting it to other devices (feels like waste to have so many USB inputs that do not supply power from the socket, but that's what I could find).
+As a next step we'll prepare the cables for powering up the pi's, let's take the **USB type-A to type-C cables** and plug them into the USB slots where there is a small sign of battery near it, These our the only output that actually supplies electricity from our socket, the rest are just for connecting it to other devices (feels like waste to have so many USB inputs that do not supply power from the socket, but that's what I could find).
 
 ### Connectivity / Networking
 
@@ -54,9 +55,9 @@ Let's connect all the pi's using **cat 7 cables** to our above mentioned switch.
 
 ### Burn a Disk image
 
-Let's install a light weight OS for raspberry, we'll download [Raspberry Buster Lite image](https://downloads.raspberrypi.org/raspbian_lite_latest) from the offical [raspberrypi.org](https://raspberrypi.org/) website.
+Let's install a light weight OS for raspberry, we'll download [Raspberry Buster Lite image](https://downloads.raspberrypi.org/raspbian_lite_latest) from the official [raspberrypi.org](https://raspberrypi.org/) website.
 
-After download completed all we have to do is to install the OS image on our microSD cards using our home computer. There are plenty of tutorial about how to achieve that and it's different steps depending on the OS you are using at home, so I'm not going to go here into details, please feel free to checkout the offical [documentation](https://www.raspberrypi.org/documentation/installation/installing-images/) on how to do that.
+After download completed all we have to do is to install the OS image on our microSD cards using our home computer. There are plenty of tutorial about how to achieve that and it's different steps depending on the OS you are using at home, so I'm not going to go here into details, please feel free to checkout the official [documentation](https://www.raspberrypi.org/documentation/installation/installing-images/) on how to do that.
 
 Now that we have on our microSD cards with bootable OS installed on them, we would want to add an empty file called **ssh** on the root directory of each microSD card, so ssh would be enabled by default when we bootstrap our pi's. We can now just connect all of the SD cards to the pi's.
 
@@ -147,7 +148,7 @@ Now we can also modify our /etc/hosts on the working station to something like:
 
 ```sh
 192.168.1.6 k3s-master
-192.168.1.7 k3s-node1 
+192.168.1.7 k3s-node1
 192.168.1.8 k3s-node2
 192.168.1.9 k3s-node3
 ```
@@ -164,7 +165,7 @@ So it's easier to ssh to one of these machine when needed, instead of typing **s
 
 ### Installing Kubernetes Control Plane
 
-Now that we've our pi's ready and remotely accessable we can proceed with kubernetes installation, this is the easiest part of this entire tutorial, thanks to rancher project that made the installation process highly customizeable and fairly straightforward. On the **k3s-master** first install docker:
+Now that we've our pi's ready and remotely accessible we can proceed with kubernetes installation, this is the easiest part of this entire tutorial, thanks to rancher project that made the installation process highly customizeable and fairly straightforward. On the **k3s-master** first install docker:
 
 ```sh
 curl -sSL https://get.docker.com | -- sh
@@ -193,7 +194,7 @@ CoreDNS is running at https://127.0.0.1:6443/api/v1/namespaces/kube-system/servi
 Metrics-server is running at https://127.0.0.1:6443/api/v1/namespaces/kube-system/services/https:metrics-server:/proxy
 ```
 
-We don't want to type sudo everytime we want to access the cluster so let's copy the **kubernetes config file** over to our working station and place it in our **~/.kube/config**, to do that we first need to copy **/etc/rancher/k3s/k3s.yaml** to **~/.kube/config**:
+We don't want to type sudo every time we want to access the cluster so let's copy the **kubernetes config file** over to our working station and place it in our **~/.kube/config**, to do that we first need to copy **/etc/rancher/k3s/k3s.yaml** to **~/.kube/config**:
 
 ```sh
 sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
@@ -233,7 +234,7 @@ CoreDNS is running at https://k3s-master:6443/api/v1/namespaces/kube-system/serv
 Metrics-server is running at https://k3s-master:6443/api/v1/namespaces/kube-system/services/https:metrics-server:/proxy
 ```
 
-We installed our control plane sucessfully if you see this output, we now need to install the **agents / worker nodes**. First let's verify that we have no worker nodes in our cluster:
+We installed our control plane successfully if you see this output, we now need to install the **agents / worker nodes**. First let's verify that we have no worker nodes in our cluster:
 
 ```sh
 kubectl get nodes
@@ -308,6 +309,7 @@ k3s-node1    Ready    worker    3m    v1.17.4+k3s1
 k3s-node2    Ready    worker    2m    v1.17.4+k3s1
 k3s-node3    Ready    worker    1m    v1.17.4+k3s1
 ```
+
 Ok so now we have a proper functioning cluster. If you recall previously we mentioned that we don't want to install traefik that is shipped with k3s by default, so the only missing part in our cluster is the nginx ingress, for deploying this we would use helm chart (Package manager of kubernetes).
 
 First let's install helm 3 client on our working station:
@@ -344,7 +346,7 @@ kube-system   nginx-ingress-default-backend   ClusterIP      10.43.51.252    <no
 kube-system   nginx-ingress-controller        LoadBalancer   10.43.168.244   192.168.1.8   80:31445/TCP,443:31743/TCP   1m
 ```
 
-Note we now have two new services, **nginx-ingress-default-backend** as internal **ClusterIP** and **nginx-ingress-controller** as **LoadBalancer**, the **Loadbalancer** recieves the ip address of one of the **worker nodes** and uses that as the external ip where we could reach from outside of the cluster.
+Note we now have two new services, **nginx-ingress-default-backend** as internal **ClusterIP** and **nginx-ingress-controller** as **LoadBalancer**, the **Loadbalancer** receives the ip address of one of the **worker nodes** and uses that as the external ip where we could reach from outside of the cluster.
 
 So we have a service of type Loadbalancer but that isn't enough for redirecting traffic on a larger scale, we need to deploy another kubernetes object called Ingress, which will redirect traffic based on DNS rules to internal services of type **ClusterIp**. let's deploy our Ingress kubernetes object:
 
@@ -363,7 +365,7 @@ spec:
   - hosts:
     - www.my-awesome-site.com
     secretName: www.my-awesome-site.com-tls
-  rules:  
+  rules:
     - host: my-awesome-site.com
       http:
         paths:
@@ -394,20 +396,19 @@ kubectl apply -f ingress.yaml
 
 We're almost done, we just need to tell configure our home router and tell cloudflare to direct traffic to our public ip on port 80 and 443. In cloudflare let's go to **DNS > DNS management for my-awesome-site.com** and add 2 A records there:
 
-
-| Type          | Name                    | Content               | TTL           | Proxy Status  |
-| ------------- | ------------------------| --------------------- | ------------- | ------------- |
-| A             | my-awesome-site.com     | [your-public-ip-here] | Auto          | Proxied       |
-| A             | www.my-awesome-site.com | [your-public-ip-here] | Auto          | Proxied       |
+| Type | Name                    | Content               | TTL  | Proxy Status |
+| ---- | ----------------------- | --------------------- | ---- | ------------ |
+| A    | my-awesome-site.com     | [your-public-ip-here] | Auto | Proxied      |
+| A    | www.my-awesome-site.com | [your-public-ip-here] | Auto | Proxied      |
 
 Note: to figure out what's the public ip address you got from your ISP you can simply call the following url: **https://ifconfig.me/ip**
 
 We also need to add the nameservers of our domain provider(where we registered that domain), so in **Cloudflare > DNS > Cloudflare nameservers** let's enter the nameservers we got from our domain provider:
 
-| Type          | Value                        |
-| ------------- | ---------------------------- |
-| NS            | some.ns.from.domain.provider |
-| NS            | some.ns.from.domain.provider |
+| Type | Value                        |
+| ---- | ---------------------------- |
+| NS   | some.ns.from.domain.provider |
+| NS   | some.ns.from.domain.provider |
 
 Ok so now all there is left to do is to configure port-forwarding on our home router, simply type the following address in your browser: http://192.168.1.1
 
@@ -427,7 +428,7 @@ kube-system   default       www.my-awesome-site.com,my-awesome-site.com   192.16
 In the above mentioned output we know it's 192.168.1.8, let's use it in our home router. So portforward rules would be:
 
 ```sh
-HTTP => 80 => 192.168.1.8:80 
+HTTP => 80 => 192.168.1.8:80
 HTTPS => 443 => 192.168.1.8:443
 ```
 
@@ -435,11 +436,11 @@ We're done, if you now call your domain, you should see **default backend** outp
 
 We still have some issues with this cluster that we need to solve -
 
-1. Our ISP would change our IP address after a period of time normally 24h and then our DNS in cloudflare would directing traffic to our outdated ip address. 
+1. Our ISP would change our IP address after a period of time normally 24h and then our DNS in cloudflare would directing traffic to our outdated ip address.
 2. Default backend page is not so exceiting, what if you want to deploy our own application.
 3. Even if we'll make sure to update this ip address in cloudflare our users will experince downtime once the ISP changes the ip address.
 
-We can solve only the first two issues as for the time of writing this article (as for the lastone unfortunatly there is no such thing as zero downtime when it comes to home made solutions, once a day after 24h when the ip has changed there might be 1 to 3 sec of downtime).
+We can solve only the first two issues as for the time of writing this article (as for the last one unfortunately there is no such thing as zero downtime when it comes to home made solutions, once a day after 24h when the ip has changed there might be 1 to 3 sec of downtime).
 
 1. Luckly we can solve the first problem with the following technic, cloudflare-dns-updater util will allow us to check for ip changes, once our ip address as been changed by the ISP, this util will send an API call to cloudflare to update the given DNS records with our current public IP. The cool thing about it, is that we can deploy this to our cluster and forget it.
 2. For deploying an application we need to build a container for ARM architecture, push it to a container image registry of choice, create a deployment and service manifest. For example first we create our namespace:
@@ -517,7 +518,7 @@ spec:
   - hosts:
     - www.my-awesome-site.com
     secretName: my-awesome-site.com-tls
-  rules:  
+  rules:
     - host: my-awesome-site.com
       http:
         paths:

@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "spellcheck": "cspell lint --no-summary --no-progress posts/**/*.md"
   },
   "dependencies": {
     "@giscus/react": "^3.0.0",
@@ -26,6 +27,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
+    "cspell": "^8.17.1",
     "eslint": "^8",
     "eslint-config-next": "15.0.2",
     "postcss": "^8",

@@ -2,7 +2,7 @@
 title: 'Quantization Explained: Making AI Efficient with a Simple Spice Rack Analogy'
 date: 'Dec 29 2024'
 thumbnail: 'quantization.png'
-tags: 'ai, ml, llms, optimization'
+tags: 'ai, ml, llm, optimization'
 excerpt: 'A Fun, Simple Explanation!'
 draft: false
 ---
@@ -27,11 +27,11 @@ Imagine you’re moving to a new kitchen. You don’t want to bring your whole r
 
 Quantization involves reducing the precision of the numbers used by the model, such as switching from 32-bit floating-point numbers to 8-bit integers. This works because many tasks don't need super precise calculations to give good results, allowing the model to remain effective while using fewer resources.. This makes the model:
 
--   Smaller: It needs less memory (like your lighter spice rack).
+- Smaller: It needs less memory (like your lighter spice rack).
 
--   Faster: It works quicker because it’s not trying to manage all those extra details.
+- Faster: It works quicker because it’s not trying to manage all those extra details.
 
--   More portable: It can run on smaller devices, like your phone or a laptop, instead of needing a supercomputer.
+- More portable: It can run on smaller devices, like your phone or a laptop, instead of needing a supercomputer.
 
 ## But Wait, Are There Trade-Offs?
 
@@ -47,11 +47,11 @@ Yes! Just like taking fewer spices means you might not capture every subtle flav
 
 Even with some trade-offs, quantization is super helpful. Here’s why:
 
--   Faster and Cheaper: Quantized models can run on smaller, cheaper computers, making them more accessible for everyone.
+- Faster and Cheaper: Quantized models can run on smaller, cheaper computers, making them more accessible for everyone.
 
--   Energy Efficient: Smaller models use less power, which is better for the environment.
+- Energy Efficient: Smaller models use less power, which is better for the environment.
 
--   Scalability: Quantized models can be used in more places, like phones, tablets, and even tiny robots!
+- Scalability: Quantized models can be used in more places, like phones, tablets, and even tiny robots!
 
 ## Conclusion
 
