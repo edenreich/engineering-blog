@@ -12,6 +12,7 @@ words:
   - autoprovisioned
   - bitnami
   - bootable
+  - changefreq
   - CLOEXEC
   - clusterrole
   - clusterrolebinding
@@ -39,6 +40,7 @@ words:
   - experince
   - FDCWD
   - Gifort
+  - giscus
   - gitops
   - godoc
   - Goroutines
@@ -50,6 +52,7 @@ words:
   - Intelinet
   - Intn
   - kalm
+  - lastmod
   - latptop
   - libbpf
   - loggingexporter
@@ -96,8 +99,8 @@ words:
   - tracepoints
   - traceree
   - traefik
+  - urlset
   - usecs
   - usermod
-  - Zipkin
-  - giscus
   - vercel
+  - Zipkin
