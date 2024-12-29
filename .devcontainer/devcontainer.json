@@ -1,28 +1,28 @@
 {
-  "name": "Next.js Dev Container",
-  "dockerFile": "Dockerfile",
-  "context": "..",
-  "customizations": {
-    "vscode": {
-      "settings": {
-        "terminal.integrated.shell.linux": "/bin/zsh",
-        "editor.formatOnSave": true,
-        "cSpell.enabled": true,
-        "cSpell.language": "en",
-        "cSpell.enabledLanguageIds": ["markdown"]
-      },
-      "extensions": [
-        "dbaeumer.vscode-eslint",
-        "esbenp.prettier-vscode",
-        "ms-vscode.vscode-typescript-next",
-        "ms-azuretools.vscode-docker",
-        "eamodio.gitlens",
-        "streetsidesoftware.code-spell-checker",
-        "shd101wyy.markdown-preview-enhanced"
-      ]
-    }
-  },
-  "postCreateCommand": "npm install",
-  "forwardPorts": [3000],
-  "remoteUser": "node"
+    "name": "Next.js Dev Container",
+    "dockerFile": "Dockerfile",
+    "context": "..",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.shell.linux": "/bin/zsh",
+                "editor.formatOnSave": true,
+                "cSpell.enabled": true,
+                "cSpell.language": "en",
+                "#cSpell.enabledLanguageIds": ["markdown"]
+            },
+            "extensions": [
+                "dbaeumer.vscode-eslint",
+                "esbenp.prettier-vscode",
+                "ms-vscode.vscode-typescript-next",
+                "ms-azuretools.vscode-docker",
+                "eamodio.gitlens",
+                "streetsidesoftware.code-spell-checker",
+                "shd101wyy.markdown-preview-enhanced"
+            ]
+        }
+    },
+    "postCreateCommand": "npm install",
+    "forwardPorts": [3000],
+    "remoteUser": "node"
 }
