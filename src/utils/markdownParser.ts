@@ -47,6 +47,7 @@ export async function fetchMarkdownPosts(): Promise<MarkdownPost[]> {
 
       const metadata: Metadata = {
         title: data.title as string,
+        linkText: data.linkText ? data.linkText : '' as string,
         excerpt: data.excerpt as string,
         thumbnail: data.thumbnail as string | undefined,
         date: data.date as string,

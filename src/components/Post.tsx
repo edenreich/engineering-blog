@@ -7,9 +7,10 @@ interface PostProps {
   excerpt: string;
   imageUrl: string;
   url: string;
+  linkText: string;
 }
 
-const Post: React.FC<PostProps> = ({ title, date, excerpt, imageUrl, url }) => {
+const Post: React.FC<PostProps> = ({ title, date, excerpt, imageUrl, url, linkText }) => {
   return (
     <div className="bg-white rounded-lg shadow-lg p-4 flex flex-col justify-between">
       <Image
@@ -24,7 +25,7 @@ const Post: React.FC<PostProps> = ({ title, date, excerpt, imageUrl, url }) => {
         <p className="text-gray-600 text-sm mb-2">{date}</p>
         <p>{excerpt}</p>
         <br />
-        <Link href={url}>Read more</Link>
+        <Link href={url}>Read more about {linkText}</Link>
       </div>
     </div>
   );

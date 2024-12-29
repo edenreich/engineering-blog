@@ -1,5 +1,6 @@
 ---
 title: 'A/B Testing with NGINX'
+linkText: 'A/B Testing with NGINX'
 description: 'A/B Testing with NGINX'
 date: 'December 11 2021'
 thumbnail: 'nginx.png'

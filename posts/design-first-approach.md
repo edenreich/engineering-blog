@@ -1,5 +1,6 @@
 ---
-title: 'Design-First Approach with OpenAPI'
+title: 'Design-First approach with OpenAPI'
+linkText: 'Design-First approach'
 date: 'May 12 2024'
 thumbnail: 'openapi.png'
 tags: 'openapi, api, sdl'

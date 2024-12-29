@@ -1,5 +1,6 @@
 ---
 title: 'Infrastructure as Data'
+linkText: 'Infrastructure as Data'
 date: 'December 04 2021'
 thumbnail: 'yaml_files.png'
 tags: 'kubernetes, gitops'

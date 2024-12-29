@@ -1,5 +1,6 @@
 ---
 title: 'NextJS Static Site Generator(SSG)'
+linkText: 'NextJS SSG'
 date: 'January 29 2022'
 thumbnail: 'nextjs.png'
 tags: 'nextjs, ssg, javascript'

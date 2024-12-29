@@ -1,5 +1,6 @@
 ---
 title: 'ArgoCD Preview Environments'
+linkText: 'ArgoCD Preview Environments'
 description: 'ArgoCD Preview Environments'
 date: 'March 10 2024'
 thumbnail: 'argocd.png'

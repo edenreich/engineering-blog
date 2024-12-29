@@ -73,6 +73,7 @@ const Home: React.FC<HomeProps> = ({ posts, tags }) => {
               <Post
                 key={post.slug}
                 title={post.metadata.title}
+                linkText={`${post.metadata.linkText}`}
                 date={post.metadata.date}
                 excerpt={post.metadata.excerpt}
                 imageUrl={`/img/posts/${post.metadata.thumbnail}`}

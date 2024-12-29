@@ -1,5 +1,6 @@
 ---
 title: 'Loosely coupled Micro-services with Distributed Application Runtime(DAPR)'
+linkText: 'DAPR'
 date: 'April 09 2022'
 thumbnail: 'distributed_application_runtime.svg'
 tags: 'event-driven architecture, go'

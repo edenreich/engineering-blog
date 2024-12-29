@@ -1,5 +1,6 @@
 ---
 title: 'Debugging running processes with strace and ptrace'
+linkText: 'strace and ptrace'
 date: 'November 27 2021'
 thumbnail: 'linux_logo_thumbnail.png'
 tags: 'linux, tracing'

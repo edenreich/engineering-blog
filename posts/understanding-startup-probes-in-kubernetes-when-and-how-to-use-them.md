@@ -1,5 +1,6 @@
 ---
 title: 'The Forgotten Kubernetes Probes: Understanding Startup Probes and Their Importance'
+linkText: 'Startup probes'
 date: 'May 28 2024'
 thumbnail: 'kubernetes.png'
 tags: 'kubernetes, optimization'
