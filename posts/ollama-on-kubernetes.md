@@ -154,7 +154,7 @@ Now that you have the fundamentals how to deploy the LLMs and interact with them
 
 Running an LLM fully locally can be cost effective, not as expensive as you might think.
 
-All the manifests and a quick guide is in [here](https://github.com/edenreich/ollama-kubernetes).
+All the manifests and a quick guide are in [here](https://github.com/edenreich/ollama-kubernetes).
 
 If you'd like me to cover deploying and managing Home-assistant, how to deploy this on Google Kubernetes Engine, let me know.
 
