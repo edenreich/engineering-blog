@@ -121,6 +121,14 @@ To deploy it:
 kubectl apply -f openweb-ui/
 ```
 
+Verify the UI is ready:
+
+```sh
+kubectl -n openweb-ui rollout status deploy openweb-ui
+```
+
+It might take some time to go up.
+
 To view the UI, run:
 
 ```sh
