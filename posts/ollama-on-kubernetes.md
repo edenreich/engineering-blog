@@ -111,7 +111,7 @@ You can interact with the model using port-forward and a bunch of curl requests 
 
 You can interact with it like I like to do, by simply using `OpenWeb-UI` which is fully open source - it's awesome.
 
-The interaction with the API directly, only make sense if you're planing to build agents. If you'd like me to cover it, let me know.
+The interaction with the API directly, only make sense if you're planning to build agents. If you'd like me to cover it, let me know.
 
 Back to the subject,
 
@@ -129,10 +129,10 @@ Note that there is an environment variable `OLLAMA_BASE_URLS` - a `;` separated 
 
 Running LLMs on Kubernetes is super simple, once you get the initial setup correctly.
 
-There are some solutions out there for kubernetes, but they are not tailored for LLMs, so I've decided to drop them. Also for clarity you can think about it more of a guide like "Kubernetes the hard way" to understand the fundamentals without many abstractions that reduces clarity.
-With this building-blocks you can take that same solution and implement an helm chart easily or perhaps use the kubernetes operator once it's a more mature project.
+There are some solutions out there for Kubernetes, but they are not tailored for LLMs, so I've decided to drop them. Also for clarity you can think about it more of a guide like "Kubernetes the hard way" to understand the fundamentals without many abstractions that reduces clarity.
+With this building-blocks you can take that same solution and implement an helm chart easily or perhaps use the Kubernetes operator once it's a more mature project.
 
-Using **<a href="https://github.com/open-webui/open-webui" target="_blank" rel="noopener noreferrer">OpenWeb-UI</a>** can help you get a seamless experince as if you are using ChatGPT. Personally I like the features of OpenWeb-UI better, due to it's flexibility and the fact that it's fully open source.
+Using **<a href="https://github.com/open-webui/open-webui" target="_blank" rel="noopener noreferrer">OpenWeb-UI</a>** can help you get a seamless experience as if you are using ChatGPT. Personally I like the features of OpenWeb-UI better, due to it's flexibility and the fact that it's fully open source.
 
 Now that you have the fundamentals how to deploy the LLMs and interact with them with a UI, you can easily add Home-assistant, which is also fully open-source into the mix and communicate with those local LLMs using your voice, which will allow you to communicate with your home smart devices.
 
