@@ -121,6 +121,14 @@ To deploy it:
 kubectl apply -f openweb-ui/
 ```
 
+To view the UI, run:
+
+```sh
+kubectl -n openweb-ui port-forward svc/openweb-ui-service 8080:8080
+```
+
+Open http://localhost:8080 and create a sample account.
+
 ## OpenWeb-UI Configurations
 
 Note that there is an environment variable `OLLAMA_BASE_URLS` - a `;` separated list of the deployed LLMs services. So if you deploy another LLM ensure to add an entry so it will be discoverable by the UI.
