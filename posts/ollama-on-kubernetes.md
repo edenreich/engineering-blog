@@ -8,11 +8,11 @@ excerpt: 'Orchestrating LLMs on Kubernetes with Ollama'
 draft: false
 ---
 
-The integration of Large Language Models (LLMs) into applications has become an essential part of innovative solutions. Running these models in a Kubernetes environment can bring scalability, fault tolerance, and efficiency to your AI workflows. In this blog post, we will explore how you can deploy and manage LLMs on Kubernetes.
+The integration of <a href="https://en.wikipedia.org/wiki/Large_language_model" target="_blank" rel="noopener noreferrer">Large Language Models (LLMs)</a> into applications has become an essential part of innovative solutions. Running these models in a Kubernetes environment can bring scalability, fault tolerance, and efficiency to your AI workflows. In this blog post, we will explore how you can deploy and manage LLMs on Kubernetes.
 
 I'm not going to fully touch the parts of scaling, but I will guide you through with this setup to have the basics, so once you do need to scale it, it will be possible.
 
-The full manifests repo is here: [ollama-kubernetes](https://github.com/edenreich/ollama-kubernetes).
+The full manifests repo is here: <a href="https://github.com/edenreich/ollama-kubernetes" target="_blank" rel="noopener noreferrer">ollama-kubernetes</a>.
 
 ## Why Run LLMs on Kubernetes?
 
@@ -31,8 +31,8 @@ The `ollama-kubernetes` repository provides a streamlined way to deploy LLMs. Le
 
 Before diving in, ensure you have the following:
 
-1. **flox**: Used for the virtual environment, we'll deploy everything locally.
-2. **docker**: For running the local cluster.
+1. **<a href="https://flox.dev/docs/install-flox/" target="_blank" rel="noopener noreferrer">flox</a>**: Used for the virtual environment, we'll deploy everything locally.
+2. **<a href="https://docs.docker.com/desktop/setup/install/mac-install/" target="_blank" rel="noopener noreferrer">docker</a>**: For running the local cluster.
 
 ### Clone the Repository
 
@@ -49,10 +49,10 @@ I kept everything simple, by using kubernetes vanilla manifests, this also helps
 
 At the beginning I reached a repository that claims to have a Kubernetes Operator with CRDs which seemed to be official from Ollama, apparently it's not, and I figured it's partially implemented so I've decided to skip it.
 
-- **01-namespace**: The namespace I choose to deploy all the LLMs called `ollama`.
-- **02-config**: Contains the environment variables for each Ollama server.
-- **03-deployment**: The deployment file contains the necessary deployment specs - the model I choose to use is side-car, the side-car container will pull the model on startup and serve it. So each LLM can be completely decoupled by pod when deployed. I left a comment for the nvidia GPUs which you can enable if you bring the workload to a production cluster that has GPUs
-- **04-service**: I'm defining the service port, from 8080 to the container port 11434.
+- **<a href="https://github.com/edenreich/ollama-kubernetes/blob/main/ollama/phi3/01-namespace.yaml" target="_blank" rel="noopener noreferrer">01-namespace</a>**: The namespace I choose to deploy all the LLMs called `ollama`.
+- **<a href="https://github.com/edenreich/ollama-kubernetes/blob/main/ollama/phi3/02-config.yaml" target="_blank" rel="noopener noreferrer">02-config</a>**: Contains the environment variables for each Ollama server.
+- **<a href="https://github.com/edenreich/ollama-kubernetes/blob/main/ollama/phi3/03-deployment.yaml" target="_blank" rel="noopener noreferrer">03-deployment</a>**: The deployment file contains the necessary deployment specs - the model I choose to use is side-car, the side-car container will pull the model on startup and serve it. So each LLM can be completely decoupled by pod when deployed. I left a comment for the nvidia GPUs which you can enable if you bring the workload to a production cluster that has GPUs
+- **<a href="https://github.com/edenreich/ollama-kubernetes/blob/main/ollama/phi3/04-service.yaml" target="_blank" rel="noopener noreferrer">04-service</a>**: I'm defining the service port, from 8080 to the container port 11434.
 
 ### Create the Cluster
 
@@ -132,7 +132,7 @@ Running LLMs on Kubernetes is super simple, once you get the initial setup corre
 There are some solutions out there for kubernetes, but they are not tailored for LLMs, so I've decided to drop them. Also for clarity you can think about it more of a guide like "Kubernetes the hard way" to understand the fundamentals without many abstractions that reduces clarity.
 With this building-blocks you can take that same solution and implement an helm chart easily or perhaps use the kubernetes operator once it's a more mature project.
 
-Using OpenWeb-UI can help you get a seamless experince as if you are using ChatGPT. Personally I like the features of OpenWeb-UI better, due to it's flexibility and the fact that it's fully open source.
+Using **<a href="https://github.com/open-webui/open-webui" target="_blank" rel="noopener noreferrer">OpenWeb-UI</a>** can help you get a seamless experince as if you are using ChatGPT. Personally I like the features of OpenWeb-UI better, due to it's flexibility and the fact that it's fully open source.
 
 Now that you have the fundamentals how to deploy the LLMs and interact with them with a UI, you can easily add Home-assistant, which is also fully open-source into the mix and communicate with those local LLMs using your voice, which will allow you to communicate with your home smart devices.
 
