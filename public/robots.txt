@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://engineering-blog.eden-reich.com/sitemap.xml
