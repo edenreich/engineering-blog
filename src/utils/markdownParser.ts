@@ -13,6 +13,7 @@ import langNginx from 'highlight.js/lib/languages/nginx';
 import langDockerfile from 'highlight.js/lib/languages/dockerfile';
 import langYaml from 'highlight.js/lib/languages/yaml';
 import langGolang from 'highlight.js/lib/languages/go';
+import langRust from 'highlight.js/lib/languages/rust';
 import { MarkdownPost, Metadata } from '@/types/MarkdownPost';
 
 export async function fetchMarkdownPosts(): Promise<MarkdownPost[]> {
@@ -40,6 +41,7 @@ export async function fetchMarkdownPosts(): Promise<MarkdownPost[]> {
             dockerfile: langDockerfile,
             yaml: langYaml,
             golang: langGolang,
+            rust: langRust,
           },
         })
         .use(rehypeStringify)
