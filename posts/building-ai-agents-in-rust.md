@@ -56,7 +56,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-inference-gateway-sdk = "0.3.0"
+inference-gateway-sdk = "0.5.8"
 ```
 
 3. Let's also add the `tokio` runtime to our dependencies:
@@ -74,7 +74,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-inference-gateway-sdk = "x.x.x"
+inference-gateway-sdk = "0.5.8"
 tokio = { version = "1.43.0", features = ["rt-multi-thread", "macros", "signal"] }
 ```
 
@@ -87,13 +87,15 @@ use inference_gateway_sdk::{
     InferenceGatewayAPI,
     InferenceGatewayClient,
     Message,
+    MessageRole,
     Provider,
+    GatewayError,
 };
 use std::time::Duration;
 use tokio::signal::ctrl_c;
 
 #[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
+async fn main() -> Result<(), GatewayError> {
     println!("Starting AI Agent... Press Ctrl+C to exit");
 
     loop {
@@ -109,7 +111,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     Ok(())
 }
 
-async fn process_logs() {
+async fn process_logs() -> Result<(), GatewayError> {
     // 1. Create a client pointing to your Inference Gateway instance
     let client = InferenceGatewayClient::new("http://localhost:8000");
 
@@ -119,27 +121,24 @@ async fn process_logs() {
     // 3. Prepare messages
     let messages = vec![
         Message {
-            role: "system".to_string(),
+            role: MessageRole::System,
             content: "You are an SRE, and you've been tasked with analyzing the following logs for errors. Please provide a summary of the issues found.".to_string()
         },
         Message {
-            role: "user".to_string(),
+            role: MessageRole::User,
             content: logs.to_string()
         }
     ];
 
     // 4. Send request to the LLM, in this case, I want to use a fully local LLM so I chose the Ollama provider
-    match client.generate_content(Provider::Ollama, "phi4:14b", messages) {
-        Ok(response) => {
-            println!("AI Analysis:\n{}", response.response.content);
-        }
-        Err(e) => {
-            eprintln!("Error during inference: {:?}", e);
-        }
-    }
+    let resp = client.generate_content(Provider::Ollama, "phi4:14b", messages).await?;
 
-    // 5. Sleep before next iteration
+    // 5. Print the response
+    println!("Response: {:?}", resp.response.content);
+
+    // 6. Sleep before next iteration
     tokio::time::sleep(Duration::from_secs(60)).await;
+    Ok(())
 }
 ```
 
