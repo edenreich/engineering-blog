@@ -14,15 +14,19 @@ import langDockerfile from 'highlight.js/lib/languages/dockerfile';
 import langYaml from 'highlight.js/lib/languages/yaml';
 import langGolang from 'highlight.js/lib/languages/go';
 import langRust from 'highlight.js/lib/languages/rust';
-import { MarkdownPost, Metadata } from '@/types/MarkdownPost';
+import { MarkdownPost, Metadata } from '../types/MarkdownPost';
 
 export async function fetchMarkdownPosts(): Promise<MarkdownPost[]> {
   const postsDirectory = path.join(process.cwd(), 'posts');
   const fileNames = fs.readdirSync(postsDirectory);
 
+  const markdownFiles = fileNames.filter(fileName =>
+    fileName.endsWith('.md') || fileName.endsWith('.mdx')
+  );
+
   const posts = await Promise.all(
-    fileNames.map(async (fileName) => {
-      const slug = fileName.replace(/\.md$/, '');
+    markdownFiles.map(async (fileName) => {
+      const slug = fileName.replace(/\.(md|mdx)$/, '');
       const filePath = path.join(postsDirectory, fileName);
       const fileContents = fs.readFileSync(filePath, 'utf8');
 
@@ -60,6 +64,7 @@ export async function fetchMarkdownPosts(): Promise<MarkdownPost[]> {
         slug,
         metadata: metadata,
         content: processedContent.toString(),
+        isMarkdownX: fileName.endsWith('.mdx'),
       } as MarkdownPost;
     })
   );

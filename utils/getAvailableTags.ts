@@ -1,4 +1,4 @@
-import { MarkdownPost } from '@/types/MarkdownPost';
+import { MarkdownPost } from '../types/MarkdownPost';
 
 export async function getAvailableTags(
   posts: MarkdownPost[]

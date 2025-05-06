@@ -12,4 +12,5 @@ export interface MarkdownPost {
   slug: string;
   metadata: Metadata;
   content: string;
+  isMarkdownX?: boolean;
 };

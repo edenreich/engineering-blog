@@ -26,7 +26,8 @@ An open-source, high-performance gateway unifying multiple LLM providers, from l
 - Switch between different AI providers without changing your application code.
 - Leverage advanced features like load-balancing, custom request routing, and caching.
 - Standardize your AI inference calls through a single, cohesive API.
-  By deploying Inference Gateway in your Kubernetes cluster, you can manage, scale, and secure these inference endpoints more easily.
+
+By deploying Inference Gateway in your Kubernetes cluster, you can manage, scale, and secure these inference endpoints more easily.
 
 ## How to Use the Rust SDK
 
