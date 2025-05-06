@@ -16,7 +16,7 @@ interface MDXPostProps {
 const MDXPost: React.FC<MDXPostProps> = ({ post }) => {
   return (
     <>
-      <section className="blog-post">
+      <section className="blog-container">
         <div className="blog-post-header">
           <h1 className="text-4xl font-bold text-gray-900">{post.metadata.title}</h1>
           <p className="text-gray-500 mt-2 text-lg">{post.metadata.date}</p>
@@ -35,7 +35,7 @@ const MDXPost: React.FC<MDXPostProps> = ({ post }) => {
           </ReactMarkdown>
         </div>
       </section>
-      <section className="blog-post mb-16">
+      <section className="blog-container mb-16">
         <div className="border-t pt-8">
           <h3 className="text-2xl font-semibold mb-6">Comments</h3>
           <Giscus

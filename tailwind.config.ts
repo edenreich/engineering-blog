@@ -14,7 +14,6 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       colors: {
-        // Use CSS variables that are defined in globals.css
         primary: 'var(--accent-color)',
         secondary: 'var(--secondary-bg-color)',
         background: 'var(--background-color)',

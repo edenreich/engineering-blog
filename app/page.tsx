@@ -4,13 +4,10 @@ import TagList from '@/components/TagList';
 import TagFilter from '@/components/TagFilter';
 import { getAllPosts, getAllTags } from '@/lib';
 
-// Specify that this page should be statically generated
 export const dynamic = 'force-static';
 
-// Pre-generate tag routes for static generation
 export async function generateStaticParams() {
   const tags = await getAllTags();
-  // Generate a route without any tag and routes for each tag
   const params = [{ slug: undefined }];
 
   return params;
@@ -26,10 +23,8 @@ export default async function Home({
   const posts = await getAllPosts();
   const tags = await getAllTags();
 
-  // Initially render all posts for static generation
   const publishedPosts = posts.filter((post) => !post.metadata.draft && post.slug !== slug);
 
-  // Create a list of post elements with their tags for the client component
   const postElements = publishedPosts.map(post => ({
     slug: post.slug,
     tags: post.metadata.tags
@@ -47,7 +42,6 @@ export default async function Home({
           <TagList initialTags={tags} />
         </div>
 
-        {/* Tag filter indicator will be shown client-side */}
         <div id="tag-filter-indicator" className="mt-6 mb-8 flex justify-center" style={{ display: 'none' }}>
           <div className="filter-indicator px-6 py-3 rounded-lg shadow-sm flex items-center">
             <span className="mr-2 text-gray-700">Currently filtering:</span>
@@ -131,7 +125,6 @@ export default async function Home({
         })}
       </div>
 
-      {/* Client component for tag filtering */}
       <TagFilter postElements={postElements} />
     </div>
   );

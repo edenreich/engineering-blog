@@ -12,7 +12,6 @@ const TagList: React.FC<TagListProps> = ({
   initialTags = [],
   activeTag,
 }) => {
-  // Sort tags alphabetically for consistent display
   const sortedTags = [...initialTags].sort();
 
   return (

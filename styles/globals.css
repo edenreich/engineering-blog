@@ -314,6 +314,7 @@ p {
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-top: auto;
+  margin-bottom: 15px;
 }
 
 .blog-tag {
@@ -344,8 +345,15 @@ p {
   padding: 2rem 0;
 }
 
+.blog-container .blog-post {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
 .blog-post-header {
   margin-bottom: 2rem;
+  text-align: center;
 }
 
 .blog-post-content img {
