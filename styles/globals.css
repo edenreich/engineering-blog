@@ -707,7 +707,8 @@ header a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 80vh;
+  padding: var(--space-6);
 }
 
 .contact-form-card {
@@ -715,13 +716,26 @@ header a:hover {
   padding: var(--space-8);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
-  width: 24rem;
+  width: 100%;
+  max-width: 36rem;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.contact-form-card:hover {
+  box-shadow: var(--shadow-lg);
 }
 
 .contact-form-title {
-  font-size: var(--font-size-2xl);
+  font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-bold);
   margin-bottom: var(--space-4);
+  color: var(--heading-color);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
 }
 
 .contact-form-field {
@@ -732,6 +746,7 @@ header a:hover {
   display: block;
   font-weight: var(--font-weight-semibold);
   margin-bottom: var(--space-2);
+  color: var(--heading-color);
 }
 
 .contact-form-input {
@@ -739,13 +754,20 @@ header a:hover {
   border: 1px solid var(--border-color);
   padding: var(--space-3);
   border-radius: var(--radius-md);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-size: var(--font-size-base);
   transition: all var(--transition-base);
 }
 
 .contact-form-input:focus {
   outline: none;
-  ring: 2px;
   border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(40, 111, 252, 0.2);
+}
+
+.contact-form-input::placeholder {
+  color: var(--color-gray-400);
 }
 
 .contact-form-notification {
@@ -754,6 +776,27 @@ header a:hover {
   padding: var(--space-3) var(--space-4);
   margin-top: var(--space-4);
   border-radius: var(--radius-md);
+  font-weight: var(--font-weight-medium);
+  text-align: center;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Make the button width 100% of the form */
+.contact-form .cta-button {
+  width: 100%;
+  margin-top: var(--space-2);
 }
 
 /***************************************
