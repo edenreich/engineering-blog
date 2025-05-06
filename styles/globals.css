@@ -136,8 +136,9 @@ nav ol {
 ul,
 ol {
   margin-top: 0.5rem;
-  margin-left: 2.5rem;
+  margin: 0;
   list-style: disc;
+  padding-inline-start: 0;
 }
 
 li {
