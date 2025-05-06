@@ -28,7 +28,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ color, label, value }) => {
     <div className="mb-4">
       <div className="flex justify-between mb-1">
         <span className="text-sm font-medium">{label}</span>
-        <span className="text-sm font-medium text-gray-500">{value}%</span>
+        <span className="text-sm font-medium">{value}%</span>
       </div>
       <div style={containerStyles}>
         <div style={fillerStyles} />

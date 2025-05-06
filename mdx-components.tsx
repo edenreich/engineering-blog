@@ -17,7 +17,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                         height: 'auto',
                     }}
                 />
-                {props.alt && <p className="text-center text-sm text-gray-500 mt-2">{props.alt}</p>}
+                {props.alt && <p className="text-center text-sm mt-2">{props.alt}</p>}
             </div>
         ),
         a: (props: any) => {
@@ -57,11 +57,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         code: (props: any) => {
             const { className } = props;
             if (!className) {
-                return <code className="bg-gray-100 px-1 py-0.5 rounded font-mono text-sm" {...props} />;
+                return <code className="px-1 py-0.5 rounded font-mono text-sm" {...props} />;
             }
             return <code className={`${className} block p-4 overflow-x-auto`} {...props} />;
         },
-        pre: (props: any) => <pre className="bg-gray-100 rounded-lg overflow-x-auto my-4" {...props} />,
+        pre: (props: any) => <pre className="rounded-lg overflow-x-auto my-4" {...props} />,
         ...components,
     };
 }

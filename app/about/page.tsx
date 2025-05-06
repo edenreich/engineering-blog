@@ -61,7 +61,7 @@ I can confidently attest to his senior-level expertise.`,
             />
           </div>
           <div className="md:w-2/3">
-            <h2 className="text-2xl font-semibold mb-4">Who am I?</h2>
+            <h2 className="text-3xl font-bold text-center mb-8">Who am I?</h2>
             <div className="prose lg:prose-lg">
               <p>
                 I'm a passionate software engineer with over 8 years of experience building robust applications
@@ -85,11 +85,11 @@ I can confidently attest to his senior-level expertise.`,
         <h2 className="text-3xl font-bold text-center mb-8">Testimonials</h2>
         <div className="grid md:grid-cols-3 gap-6">
           {testimonials.map((testimonial) => (
-            <div key={testimonial.id} className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+            <div key={testimonial.id} className="bg-white p-6 rounded-lg shadow-md">
               <blockquote className="italic mb-4">{testimonial.text}</blockquote>
               <div className="text-right">
                 <p className="font-semibold">{testimonial.author}</p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">{testimonial.position}</p>
+                <p className="text-sm">{testimonial.position}</p>
               </div>
             </div>
           ))}

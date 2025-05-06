@@ -18,8 +18,8 @@ const MDXPost: React.FC<MDXPostProps> = ({ post }) => {
     <>
       <section className="blog-container">
         <div className="blog-post-header">
-          <h1 className="text-4xl font-bold text-gray-900">{post.metadata.title}</h1>
-          <p className="text-gray-500 mt-2 text-lg">{post.metadata.date}</p>
+          <h1 className="text-4xl font-bold">{post.metadata.title}</h1>
+          <p className="mt-2 text-lg">{post.metadata.date}</p>
           <div className="mt-4">
             <TagList initialTags={post.metadata.tags} />
           </div>

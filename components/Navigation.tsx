@@ -3,7 +3,7 @@
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
-export default function ClientNavigation() {
+export default function Navigation() {
   const pathname = usePathname();
 
   const active = (path: string) => {
@@ -23,7 +23,7 @@ export default function ClientNavigation() {
           <li className="justify-self-start flex items-center h-full">
             <Link
               href="/"
-              className={`text-white hover:text-gray-300 ${active('/') === 'font-bold' ? 'font-bold' : ''}`}
+              className={`text-white ${active('/') === 'font-bold' ? 'font-bold' : ''}`}
             >
               Home
             </Link>
@@ -31,7 +31,7 @@ export default function ClientNavigation() {
           <li className="justify-self-center flex items-center h-full">
             <Link
               href="/about"
-              className={`text-white hover:text-gray-300 ${active('/about') === 'font-bold' ? 'font-bold' : ''}`}
+              className={`text-white ${active('/about') === 'font-bold' ? 'font-bold' : ''}`}
             >
               About
             </Link>
@@ -39,7 +39,7 @@ export default function ClientNavigation() {
           <li className="justify-self-end flex items-center h-full">
             <Link
               href="/contact"
-              className={`text-white hover:text-gray-300 ${active('/contact') === 'font-bold' ? 'font-bold' : ''}`}
+              className={`text-white ${active('/contact') === 'font-bold' ? 'font-bold' : ''}`}
             >
               Contact
             </Link>

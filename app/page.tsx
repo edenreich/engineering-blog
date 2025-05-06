@@ -44,7 +44,7 @@ export default async function Home({
 
         <div id="tag-filter-indicator" className="mt-6 mb-8 flex justify-center" style={{ display: 'none' }}>
           <div className="filter-indicator px-6 py-3 rounded-lg shadow-sm flex items-center">
-            <span className="mr-2 text-gray-700">Currently filtering:</span>
+            <span className="mr-2">Currently filtering:</span>
             <span id="current-tag-name" className="tag-pill"></span>
             <Link href="/" className="clear-filter-btn ml-4" aria-label="Clear filter">
               <span className="sr-only">Clear filter</span>
@@ -57,7 +57,7 @@ export default async function Home({
       <h2 id="posts-heading" className="text-2xl font-bold mb-6">Blog Posts</h2>
 
       <div id="no-posts-message" className="text-center py-8" style={{ display: 'none' }}>
-        <p className="text-lg text-gray-600">No posts found with this tag.</p>
+        <p className="text-lg">No posts found with this tag.</p>
         <Link href="/" className="mt-4 inline-block text-accent-color underline">
           View all posts
         </Link>
