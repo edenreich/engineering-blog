@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import ProgressBar from '../../components/ProgressBar';
+import ProgressBar from '@/components/ProgressBar';
 
 export default function AboutPage() {
   const testimonials = [
