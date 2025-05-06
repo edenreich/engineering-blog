@@ -1,7 +1,9 @@
 {
   "name": "Next.js Dev Container",
-  "dockerFile": "Dockerfile",
-  "context": "..",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
   "customizations": {
     "vscode": {
       "settings": {
@@ -34,5 +36,8 @@
   },
   "postCreateCommand": "npm install",
   "appPort": [3000],
-  "remoteUser": "node"
+  "remoteUser": "node",
+  "containerEnv": {
+    "GITHUB_TOKEN": "${localEnv:GITHUB_TOKEN}"
+  }
 }
