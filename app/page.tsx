@@ -96,7 +96,8 @@ export default async function Home({
                 </p>
 
                 <p className="blog-post-excerpt">
-                  {post.metadata.excerpt}
+                  {post.metadata.excerpt.split(' ').slice(0, 10).join(' ')}
+                  {post.metadata.excerpt.split(' ').length > 10 ? '...' : ''}
                 </p>
               </div>
 
