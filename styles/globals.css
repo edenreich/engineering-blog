@@ -37,9 +37,22 @@
   --code-block-bg-color: #151515;
 
   /* Navigation colors */
-  --nav-bg-color: #000000;
+  --nav-bg-color: #171B31;
   --nav-text-color: #ffffff;
   --nav-hover-color: #e5e5e5;
+
+  /* Footer colors */
+  --footer-bg-color: #171B31;
+  --footer-text-color: #ffffff;
+  --footer-link-hover-color: #e5e5e5;
+  --footer-border-color: #2d3246;
+
+  /* Social media hover colors */
+  --twitter-hover-color: #1DA1F2;
+  --linkedin-hover-color: #0077B5;
+  --instagram-hover-color: #E1306C;
+  --github-hover-color: #c9d1d9;
+  --facebook-hover-color: #4267B2;
 
   /* Shadow colors */
   --shadow-color: rgba(0, 0, 0, 0.1);
@@ -504,4 +517,34 @@ code.hljs {
   background-color: #e2e8f0;
   color: #475569;
   text-decoration: none;
+}
+
+/* Footer specific styles */
+.social-icon {
+  color: var(--footer-text-color);
+  transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+  text-decoration: none;
+}
+
+.social-icon[aria-label="Twitter"]:hover {
+  color: var(--twitter-hover-color);
+}
+
+.social-icon[aria-label="LinkedIn"]:hover {
+  color: var(--linkedin-hover-color);
+}
+
+.social-icon[aria-label="Instagram"]:hover {
+  color: var(--instagram-hover-color);
+}
+
+.social-icon[aria-label="GitHub"]:hover {
+  color: var(--github-hover-color);
+}
+
+.social-icon[aria-label="Facebook"]:hover {
+  color: var(--facebook-hover-color);
 }
