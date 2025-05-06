@@ -42,7 +42,7 @@ I can confidently attest to his senior-level expertise.`,
     "CI/CD": ["GitHub Actions", "GitLab CI", "Jenkins", "Bitbucket Pipelines", "ArgoCD"],
     "Infrastructure": ["Terraform", "Ansible", "Pulumi", "CloudFormation", "Puppet", "SaltStack", "Chef"],
     "IoT": ["FPV Drones", "Micro-controllers"],
-    "Methodologies": ["GitOps", "DevOps", "DevSecOps", "FinOps", "DataOps", "MLOps", "CloudOps", "Microservices", "TDD", "BDD", "Agile", "Scrum", "Kanban"]
+    "Methodologies": ["GitOps", "DevOps", "DevSecOps", "FinOps", "DataOps", "MLOps", "CloudOps", "Microservices", "TDD (Test-driven Development)", "DDD (Domain-driven Design)", "DDD (Documentation-driven Development)", "Agile", "Scrum", "Kanban"]
   };
 
   return (
