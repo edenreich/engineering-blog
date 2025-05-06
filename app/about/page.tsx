@@ -3,8 +3,15 @@
 import Image from 'next/image';
 import ProgressBar from '@/components/ProgressBar';
 
+type Testimonial = {
+  id: number;
+  text: string;
+  author: string;
+  position: string;
+}
+
 export default function AboutPage() {
-  const testimonials = [
+  const testimonials: Testimonial[] = [
     {
       id: 1,
       text: "I had the pleasure of working with Eden at Tesla, where we collaborated closely on several projects. Eden is an exceptionally talented and innovative professional who constantly brings fresh ideas to the table. His deep knowledge across a wide range of topics, combined with his ability to think creatively and solve complex problems, makes him an invaluable asset to any team. I was always impressed by his proactive approach and his ability to stay ahead of the curve. Anyone would be lucky to work with someone as driven and insightful as Eden.",
@@ -84,12 +91,12 @@ I can confidently attest to his senior-level expertise.`,
       <section className="mb-16">
         <h2 className="text-3xl font-bold text-center mb-8">Testimonials</h2>
         <div className="grid md:grid-cols-3 gap-6">
-          {testimonials.map((testimonial) => (
-            <div key={testimonial.id} className="bg-white p-6 rounded-lg shadow-md">
-              <blockquote className="italic mb-4">{testimonial.text}</blockquote>
-              <div className="text-right">
+          {testimonials.map((testimonial: Testimonial) => (
+            <div key={testimonial.id} className="bg-gray-50 p-6 rounded-lg shadow">
+              <blockquote className="mb-4">{testimonial.text}</blockquote>
+              <div className="mt-4">
                 <p className="font-semibold">{testimonial.author}</p>
-                <p className="text-sm">{testimonial.position}</p>
+                <p className="text-sm text-gray-600">{testimonial.position}</p>
               </div>
             </div>
           ))}
@@ -185,9 +192,9 @@ I can confidently attest to his senior-level expertise.`,
         </p>
         <a
           href="/contact"
-          className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition-colors"
+          className="cta-button"
         >
-          Get in Touch
+          Get In Touch
         </a>
       </section>
     </div>
