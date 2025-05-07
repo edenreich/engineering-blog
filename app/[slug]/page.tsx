@@ -8,7 +8,11 @@ import MDXImage from '@/components/MDXImage';
 import { Metadata as NextMetadata } from 'next';
 import Image from 'next/image';
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<NextMetadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<NextMetadata> {
   const resolvedParams = await params;
   const post = await getPostBySlug(resolvedParams.slug);
 
@@ -41,7 +45,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       type: 'article',
       url: `https://engineering-blog.eden-reich.com/${resolvedParams.slug}`,
       publishedTime: metadata.date,
-      modifiedTime: typeof metadata.lastModified === 'string' ? metadata.lastModified : metadata.date,
+      modifiedTime:
+        typeof metadata.lastModified === 'string' ? metadata.lastModified : metadata.date,
       authors: typeof metadata.author === 'string' ? [metadata.author] : ['Engineering Team'],
       tags: metadata.tags,
       images: [
@@ -50,7 +55,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
           width: 1200,
           height: 630,
           alt: title,
-        }
+        },
       ],
     },
 
@@ -72,8 +77,8 @@ export async function generateStaticParams() {
 }
 
 type PageParams = {
-  params: Promise<{ slug: string }>
-}
+  params: Promise<{ slug: string }>;
+};
 
 export default async function PostPage({ params }: PageParams) {
   const resolvedParams = await params;
@@ -85,9 +90,10 @@ export default async function PostPage({ params }: PageParams) {
   }
 
   const publishDate = new Date(post.metadata.date).toISOString();
-  const modifiedDate = typeof post.metadata.lastModified === 'string'
-    ? new Date(post.metadata.lastModified).toISOString()
-    : publishDate;
+  const modifiedDate =
+    typeof post.metadata.lastModified === 'string'
+      ? new Date(post.metadata.lastModified).toISOString()
+      : publishDate;
 
   // Prioritize image over thumbnail for SEO structured data
   const postImage = post.metadata.image || post.metadata.thumbnail;
@@ -114,20 +120,26 @@ export default async function PostPage({ params }: PageParams) {
       logo: {
         '@type': 'ImageObject',
         url: 'https://engineering-blog.eden-reich.com/img/profile.png',
-      }
+      },
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://engineering-blog.eden-reich.com/${slug}`
+      '@id': `https://engineering-blog.eden-reich.com/${slug}`,
     },
-    keywords: post.metadata.tags.join(', ')
+    keywords: post.metadata.tags.join(', '),
   };
 
   // Get the hero image source (either full article image or thumbnail)
   const heroImageSource = post.metadata.image || post.metadata.thumbnail;
 
   return (
-    <Suspense fallback={<div className="container mx-auto p-8 h-64 flex items-center justify-center">Loading post...</div>}>
+    <Suspense
+      fallback={
+        <div className="container mx-auto p-8 h-64 flex items-center justify-center">
+          Loading post...
+        </div>
+      }
+    >
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -189,11 +201,7 @@ export default async function PostPage({ params }: PageParams) {
         </div>
 
         <article className="mt-8 mb-16 prose prose-lg max-w-none">
-          {post.content ? (
-            <MDXContent source={post.content} />
-          ) : (
-            <div>No content available</div>
-          )}
+          {post.content ? <MDXContent source={post.content} /> : <div>No content available</div>}
         </article>
 
         <section className="mt-16">

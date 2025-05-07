@@ -28,10 +28,11 @@ const generateSitemap = async () => {
 
   const currentModifications: Record<string, string> = {};
 
-  const staticPagesEntries: SitemapEntry[] = staticPages.map((page) => {
-    let pagePath = page === '/'
-      ? path.join(process.cwd(), 'app', 'page.tsx')
-      : path.join(process.cwd(), 'app', page.replace(/\/$/, ''), 'page.tsx');
+  const staticPagesEntries: SitemapEntry[] = staticPages.map(page => {
+    let pagePath =
+      page === '/'
+        ? path.join(process.cwd(), 'app', 'page.tsx')
+        : path.join(process.cwd(), 'app', page.replace(/\/$/, ''), 'page.tsx');
 
     let lastMod = currentDate;
     if (fs.existsSync(pagePath)) {
@@ -45,11 +46,11 @@ const generateSitemap = async () => {
     return {
       url: `${baseUrl}${page}`,
       lastMod,
-      changeFreq: 'monthly'
+      changeFreq: 'monthly',
     };
   });
 
-  const postsEntries: SitemapEntry[] = posts.map((post) => {
+  const postsEntries: SitemapEntry[] = posts.map(post => {
     const postUrl = `/${post.slug}/`;
     const postsDir = path.join(process.cwd(), 'posts');
     let lastMod = currentDate;
@@ -70,7 +71,7 @@ const generateSitemap = async () => {
     return {
       url: `${baseUrl}${postUrl}`,
       lastMod,
-      changeFreq: 'monthly'
+      changeFreq: 'monthly',
     };
   });
 
@@ -78,8 +79,7 @@ const generateSitemap = async () => {
 
   const modifiedEntries = allEntries.filter(entry => {
     const urlPath = new URL(entry.url).pathname;
-    return !previousModifications[urlPath] ||
-      previousModifications[urlPath] !== entry.lastMod;
+    return !previousModifications[urlPath] || previousModifications[urlPath] !== entry.lastMod;
   });
 
   console.log(`Found ${modifiedEntries.length} modified entries out of ${allEntries.length} total`);
@@ -91,8 +91,8 @@ const generateSitemap = async () => {
 
   const finalEntries = allEntries.map(entry => {
     const urlPath = new URL(entry.url).pathname;
-    const isModified = !previousModifications[urlPath] ||
-      previousModifications[urlPath] !== entry.lastMod;
+    const isModified =
+      !previousModifications[urlPath] || previousModifications[urlPath] !== entry.lastMod;
 
     if (isModified) {
       console.log(`Modified: ${entry.url} (${entry.lastMod})`);
@@ -125,7 +125,7 @@ ${urlXml}
   console.log(`Total URLs in sitemap: ${finalEntries.length}`);
 };
 
-generateSitemap().catch((error) => {
+generateSitemap().catch(error => {
   console.error('Error generating sitemap:', error);
   process.exit(1);
 });

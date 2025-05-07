@@ -203,13 +203,11 @@ const mockedPages: Page[] = [
   },
 ];
 
-export const getStaticPaths: GetStaticPaths = async (): Promise<
-  GetStaticPathsResult<Request>
-> => {
+export const getStaticPaths: GetStaticPaths = async (): Promise<GetStaticPathsResult<Request>> => {
   // Get all existing paths from an API for generating static pages ahead of time
   // Probably use Contentful API to get this data
   // But for now let's mock that data
-  const allPossiblePaths = mockedPages.map((page) => ({
+  const allPossiblePaths = mockedPages.map(page => ({
     params: { slug: page.slug },
   }));
   return {
@@ -222,9 +220,7 @@ export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ): Promise<GetStaticPropsResult<Page>> => {
   // Lookup for a page by slug, this is where you'd use Contentful API
-  const page: Page = mockedPages.filter(
-    (page) => page.slug === context.params?.slug
-  )[0];
+  const page: Page = mockedPages.filter(page => page.slug === context.params?.slug)[0];
 
   return {
     props: {

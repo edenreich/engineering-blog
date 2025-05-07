@@ -12,7 +12,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ color, label, value }) => {
     width: '100%',
     backgroundColor: '#e0e0de',
     borderRadius: '20px',
-    margin: '8px 0'
+    margin: '8px 0',
   };
 
   const fillerStyles = {
@@ -21,7 +21,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ color, label, value }) => {
     backgroundColor: color,
     borderRadius: 'inherit',
     textAlign: 'right' as const,
-    transition: 'width 0.5s ease-in-out'
+    transition: 'width 0.5s ease-in-out',
   };
 
   return (

@@ -30,6 +30,7 @@ The protocol isn't just theoretical - it's already being widely implemented acro
 ### AWS Implementation
 
 AWS has integrated MCP with Amazon Bedrock, creating clients that:
+
 - Fetch web pages and convert HTML to Markdown for model analysis
 - Provide link analysis functions to validate URLs
 - Enable running Lambda functions as tools for LLMs without code changes
@@ -60,6 +61,7 @@ server.serve()
 ### Microsoft Azure Integration
 
 Microsoft hasn't been left behind. Their Azure AI Foundry now features MCP integration with capabilities for:
+
 - Knowledge retrieval from public/private sources
 - Real-time grounding with Bing and Azure AI Search
 - Data integration for AI insights
@@ -80,20 +82,21 @@ The baseline pattern looks something like:
 def secure_operation(input_data: str) -> str:
     # Validate input
     validated_input = validate_input(input_data)
-    
+
     # Execute in sandbox
     with Sandbox():
         result = process_data(validated_input)
-    
+
     # Validate output
     safe_output = validate_output(result)
-    
+
     return safe_output
 ```
 
 ## The Growing Developer Ecosystem
 
 What's most exciting to me as an engineer is the rapidly expanding ecosystem around MCP. Several developers have shared repositories with working Python implementations for:
+
 - Custom MCP servers
 - Chatbot clients
 - Proxy connections to applications like Claude desktop
@@ -123,4 +126,4 @@ Have you started experimenting with MCP yet? I'd be interested to hear about you
 
 ---
 
-*Technical note: This post reflects MCP implementations as of May 2025. The protocol continues to evolve, so check the official documentation for the latest specifications.*
+_Technical note: This post reflects MCP implementations as of May 2025. The protocol continues to evolve, so check the official documentation for the latest specifications._

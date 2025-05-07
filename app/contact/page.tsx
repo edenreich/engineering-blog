@@ -24,7 +24,9 @@ export default function ContactPage() {
         <p className="mb-6">Have a question? Feel free to leave me a message.</p>
         <form onSubmit={handleSubmit} className="contact-form">
           <div className="contact-form-field">
-            <label htmlFor="name" className="contact-form-label">Name:</label>
+            <label htmlFor="name" className="contact-form-label">
+              Name:
+            </label>
             <input
               type="text"
               id="name"
@@ -34,7 +36,9 @@ export default function ContactPage() {
             />
           </div>
           <div className="contact-form-field">
-            <label htmlFor="email" className="contact-form-label">Email:</label>
+            <label htmlFor="email" className="contact-form-label">
+              Email:
+            </label>
             <input
               type="email"
               id="email"
@@ -44,7 +48,9 @@ export default function ContactPage() {
             />
           </div>
           <div className="contact-form-field">
-            <label htmlFor="message" className="contact-form-label">Message:</label>
+            <label htmlFor="message" className="contact-form-label">
+              Message:
+            </label>
             <textarea
               id="message"
               rows={5}
@@ -53,18 +59,13 @@ export default function ContactPage() {
               required
             ></textarea>
           </div>
-          <button
-            type="submit"
-            className="cta-button w-full"
-          >
+          <button type="submit" className="cta-button w-full">
             Submit
           </button>
         </form>
 
         {showNotification && (
-          <div className="contact-form-notification">
-            Please use Linkedin to contact me.
-          </div>
+          <div className="contact-form-notification">Please use Linkedin to contact me.</div>
         )}
       </div>
     </div>

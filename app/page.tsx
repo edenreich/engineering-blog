@@ -10,16 +10,25 @@ export const dynamic = 'force-static';
 export async function generateMetadata(): Promise<Metadata> {
   const tags = await getAllTags();
 
-  const allTags = tags.map(tag => tag.split(' ').map((word: string) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')).join(', ');
+  const allTags = tags
+    .map(tag =>
+      tag
+        .split(' ')
+        .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ')
+    )
+    .join(', ');
 
   return {
     title: 'Engineering Blog | Latest Tech Insights and Best Practices',
-    description: 'Explore expert insights on software engineering, cloud native technologies, AI, and more. Stay updated with the latest trends and best practices.',
+    description:
+      'Explore expert insights on software engineering, cloud native technologies, AI, and more. Stay updated with the latest trends and best practices.',
     keywords: `software engineering, tech blog, ${allTags}, development best practices, coding tutorials`,
 
     openGraph: {
       title: 'Engineering Blog | Technology Insights and Best Practices',
-      description: 'The latest insights on software engineering, cloud technologies, and development best practices from our expert team.',
+      description:
+        'The latest insights on software engineering, cloud technologies, and development best practices from our expert team.',
       url: 'https://engineering-blog.eden-reich.com',
       siteName: 'Engineering Blog',
       locale: 'en_US',
@@ -30,7 +39,7 @@ export async function generateMetadata(): Promise<Metadata> {
           width: 1200,
           height: 630,
           alt: 'Engineering Blog',
-        }
+        },
       ],
     },
 
@@ -59,12 +68,12 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-  return [{ slug: "/" }];
+  return [{ slug: '/' }];
 }
 
 type PageParams = {
-  params: Promise<{ slug: string }>
-}
+  params: Promise<{ slug: string }>;
+};
 
 export default async function Home({ params }: PageParams) {
   const p = await params;
@@ -72,11 +81,11 @@ export default async function Home({ params }: PageParams) {
   const posts = await getAllPostsWithMetadata();
   const tags = await getAllTags();
 
-  const publishedPosts = posts.filter((post) => !post.metadata.draft && post.slug !== slug);
+  const publishedPosts = posts.filter(post => !post.metadata.draft && post.slug !== slug);
 
   const postElements = publishedPosts.map(post => ({
     slug: post.slug,
-    tags: post.metadata.tags
+    tags: post.metadata.tags,
   }));
 
   const structuredData = {
@@ -101,8 +110,8 @@ export default async function Home({ params }: PageParams) {
         '@type': 'Person',
         name: post.metadata.author || 'Engineering Team',
       },
-      keywords: post.metadata.tags.join(', ')
-    }))
+      keywords: post.metadata.tags.join(', '),
+    })),
   };
 
   return (
@@ -123,7 +132,11 @@ export default async function Home({ params }: PageParams) {
             <TagList initialTags={tags} />
           </div>
 
-          <div id="tag-filter-indicator" className="mt-6 mb-8 flex justify-center" style={{ display: 'none' }}>
+          <div
+            id="tag-filter-indicator"
+            className="mt-6 mb-8 flex justify-center"
+            style={{ display: 'none' }}
+          >
             <div className="filter-indicator px-6 py-3 rounded-lg shadow-sm flex items-center">
               <span className="mr-2">Currently filtering:</span>
               <span id="current-tag-name" className="tag-pill"></span>
@@ -135,7 +148,9 @@ export default async function Home({ params }: PageParams) {
           </div>
         </div>
 
-        <h2 id="posts-heading" className="text-2xl font-bold mb-6">Blog Posts</h2>
+        <h2 id="posts-heading" className="text-2xl font-bold mb-6">
+          Blog Posts
+        </h2>
 
         <div id="no-posts-message" className="text-center py-8" style={{ display: 'none' }}>
           <p className="text-lg">No posts found with this tag.</p>
@@ -146,7 +161,7 @@ export default async function Home({ params }: PageParams) {
 
         <div className="blog-posts-grid" id="posts-container">
           {publishedPosts.map((post, index) => {
-            const imagePath = `/img/posts/thumbnails/${post.metadata.thumbnail}`
+            const imagePath = `/img/posts/thumbnails/${post.metadata.thumbnail}`;
 
             return (
               <div
@@ -162,14 +177,12 @@ export default async function Home({ params }: PageParams) {
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover hover:scale-105 transition-transform duration-300"
                     priority={index < 3}
-                    loading={index < 3 ? "eager" : "lazy"}
+                    loading={index < 3 ? 'eager' : 'lazy'}
                   />
                 </div>
 
                 <div className="blog-post-content">
-                  <h3 className="blog-post-title">
-                    {post.metadata.title}
-                  </h3>
+                  <h3 className="blog-post-title">{post.metadata.title}</h3>
 
                   <p className="blog-post-date">
                     <time dateTime={new Date(post.metadata.date).toISOString().split('T')[0]}>

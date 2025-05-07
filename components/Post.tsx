@@ -20,7 +20,7 @@ const Post: React.FC<PostProps> = ({
   thumbnailUrl,
   url,
   linkText,
-  tags = []
+  tags = [],
 }) => {
   const displayImageUrl = thumbnailUrl || imageUrl;
 
@@ -44,7 +44,7 @@ const Post: React.FC<PostProps> = ({
       <div className="blog-post-footer">
         {tags && tags.length > 0 && (
           <div className="blog-post-tags">
-            {tags.slice(0, 3).map((tag) => (
+            {tags.slice(0, 3).map(tag => (
               <span key={tag} className="blog-tag">
                 {tag}
               </span>
@@ -53,10 +53,7 @@ const Post: React.FC<PostProps> = ({
           </div>
         )}
 
-        <Link
-          href={url}
-          className="blog-post-readmore text-accent hover:text-accent-dark"
-        >
+        <Link href={url} className="blog-post-readmore text-accent hover:text-accent-dark">
           Read more
         </Link>
       </div>

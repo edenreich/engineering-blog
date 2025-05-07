@@ -20,12 +20,12 @@ export async function fetchMarkdownPosts(): Promise<MarkdownPost[]> {
   const postsDirectory = path.join(process.cwd(), 'posts');
   const fileNames = fs.readdirSync(postsDirectory);
 
-  const markdownFiles = fileNames.filter(fileName =>
-    fileName.endsWith('.md') || fileName.endsWith('.mdx')
+  const markdownFiles = fileNames.filter(
+    fileName => fileName.endsWith('.md') || fileName.endsWith('.mdx')
   );
 
   const posts = await Promise.all(
-    markdownFiles.map(async (fileName) => {
+    markdownFiles.map(async fileName => {
       const slug = fileName.replace(/\.(md|mdx)$/, '');
       const filePath = path.join(postsDirectory, fileName);
       const fileContents = fs.readFileSync(filePath, 'utf8');
@@ -53,7 +53,7 @@ export async function fetchMarkdownPosts(): Promise<MarkdownPost[]> {
 
       const metadata: Metadata = {
         title: data.title as string,
-        linkText: data.linkText ? data.linkText : '' as string,
+        linkText: data.linkText ? data.linkText : ('' as string),
         excerpt: data.excerpt as string,
         thumbnail: data.thumbnail as string | undefined,
         image: data.image as string | undefined, // Add support for full article image

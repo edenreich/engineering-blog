@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useMDXComponents } from '@/mdx-components';
 import { MDXRemote } from 'next-mdx-remote';
@@ -21,7 +21,7 @@ const MDXContent: React.FC<MDXContentProps> = ({ source }) => {
           mdxOptions: {
             remarkPlugins: [remarkGfm],
             development: process.env.NODE_ENV === 'development',
-          }
+          },
         });
         setMdxSource(serialized);
       } catch (error) {
@@ -36,12 +36,7 @@ const MDXContent: React.FC<MDXContentProps> = ({ source }) => {
     return <div>Loading content...</div>;
   }
 
-  return (
-    <MDXRemote
-      {...mdxSource}
-      components={components}
-    />
-  );
+  return <MDXRemote {...mdxSource} components={components} />;
 };
 
 export default MDXContent;

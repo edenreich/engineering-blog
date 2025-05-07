@@ -15,4 +15,4 @@ export interface MarkdownPost {
   metadata: Metadata;
   content: string;
   isMarkdownX?: boolean;
-};
+}

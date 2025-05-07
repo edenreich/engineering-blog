@@ -9,11 +9,11 @@ export async function getAllPosts(): Promise<{ slug: string }[]> {
   const postsDirectory = path.join(process.cwd(), 'posts');
   const fileNames = fs.readdirSync(postsDirectory);
 
-  const markdownFiles = fileNames.filter(fileName =>
-    fileName.endsWith('.md') || fileName.endsWith('.mdx')
+  const markdownFiles = fileNames.filter(
+    fileName => fileName.endsWith('.md') || fileName.endsWith('.mdx')
   );
 
-  return markdownFiles.map((fileName) => {
+  return markdownFiles.map(fileName => {
     const slug = fileName.replace(/\.(md|mdx)$/, '');
     return { slug };
   });
@@ -23,11 +23,11 @@ export async function getAllPostsWithMetadata(): Promise<Post[]> {
   const postsDirectory = path.join(process.cwd(), 'posts');
   const fileNames = fs.readdirSync(postsDirectory);
 
-  const markdownFiles = fileNames.filter(fileName =>
-    fileName.endsWith('.md') || fileName.endsWith('.mdx')
+  const markdownFiles = fileNames.filter(
+    fileName => fileName.endsWith('.md') || fileName.endsWith('.mdx')
   );
 
-  const postsPromises = markdownFiles.map(async (fileName) => {
+  const postsPromises = markdownFiles.map(async fileName => {
     const slug = fileName.replace(/\.(md|mdx)$/, '');
     const post = await getPostBySlug(slug);
     return post;
@@ -78,7 +78,7 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
 
     const metadata: Metadata = {
       title: data.title as string,
-      linkText: data.linkText ? data.linkText : '' as string,
+      linkText: data.linkText ? data.linkText : ('' as string),
       excerpt: data.excerpt as string,
       image: data.image as string | undefined,
       thumbnail: data.thumbnail as string | undefined,
@@ -91,7 +91,7 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
       slug,
       metadata,
       content,
-      isMarkdownX
+      isMarkdownX,
     };
   } catch (error) {
     console.error(`Error getting post with slug ${slug}:`, error);

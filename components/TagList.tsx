@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React from 'react';
 import Link from 'next/link';
@@ -8,10 +8,7 @@ interface TagListProps {
   activeTag?: string;
 }
 
-const TagList: React.FC<TagListProps> = ({
-  initialTags = [],
-  activeTag,
-}) => {
+const TagList: React.FC<TagListProps> = ({ initialTags = [], activeTag }) => {
   const sortedTags = [...initialTags].sort();
 
   return (

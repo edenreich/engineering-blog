@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import { useState } from "react";
+import Image from 'next/image';
+import { useState } from 'react';
 
 interface MDXImageProps {
   src: string;
@@ -15,7 +15,7 @@ const MDXImage: React.FC<MDXImageProps> = ({ src, alt, title, className, variant
   const [isLoaded, setIsLoaded] = useState(false);
 
   let imageSrc = src;
-  if (src.startsWith("/")) {
+  if (src.startsWith('/')) {
     imageSrc = src;
   } else if (variant === 'thumbnail') {
     imageSrc = `/img/posts/thumbnails/${src}`;
@@ -30,7 +30,9 @@ const MDXImage: React.FC<MDXImageProps> = ({ src, alt, title, className, variant
     <figure className={`my-${variant === 'thumbnail' ? '4' : '8'}`}>
       <div className={`relative w-full overflow-hidden ${className || ''}`}>
         <div className={`${aspectRatio} w-full`}>
-          <div className={`transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+          <div
+            className={`transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+          >
             <Image
               src={imageSrc}
               alt={alt}
@@ -44,11 +46,7 @@ const MDXImage: React.FC<MDXImageProps> = ({ src, alt, title, className, variant
           </div>
         </div>
       </div>
-      {title && (
-        <figcaption className="mt-2 text-center text-sm text-gray-600">
-          {title}
-        </figcaption>
-      )}
+      {title && <figcaption className="mt-2 text-center text-sm text-gray-600">{title}</figcaption>}
     </figure>
   );
 };
