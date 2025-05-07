@@ -174,7 +174,7 @@ I can confidently attest to his senior-level expertise.`,
             Read more testimonials from colleagues and clients who I&apos;ve worked with.
           </p>
           <Link
-            href="https://www.linkedin.com/in/eden-reich-411020100/details/recommendations/?detailScreenTabIndex=0"
+            href="https://www.linkedin.com/in/eden-reich-411020100/details/recommendations/"
             target="_blank"
             rel="noopener noreferrer"
             className="cta-button inline-block"
