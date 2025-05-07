@@ -3,9 +3,6 @@
 
 echo "🚀 Running pre-commit checks..."
 
-# Enable command echoing for debugging
-set -x
-
 # Get list of staged files
 STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.(js|jsx|ts|tsx|md|mdx)$' || echo '')
 
@@ -40,11 +37,7 @@ fi
 if git diff --cached --name-only | grep -q "public/img/posts/.*\.\(png\|jpg\|jpeg\|svg\)$"; then
   echo "🖼️ Generating thumbnails for new images..."
   npm run generate-thumbnails
-  # Stage the newly generated thumbnails
   git add public/img/posts/thumbnails/ || true
 fi
-
-# Disable command echoing
-set +x
 
 echo "✅ All pre-commit checks passed!"
