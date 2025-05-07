@@ -9,6 +9,7 @@
       "settings": {
         "terminal.integrated.shell.linux": "/bin/zsh",
         "editor.formatOnSave": true,
+        "files.insertFinalNewline": true,
         "cSpell.enabled": true,
         "cSpell.language": "en",
         "#cSpell.enabledLanguageIds": ["markdown"],
