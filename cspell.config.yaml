@@ -13,6 +13,7 @@ words:
   - bitnami
   - bootable
   - changefreq
+  - chatbots
   - CLOEXEC
   - clusterrole
   - clusterrolebinding
@@ -30,6 +31,7 @@ words:
   - dapr
   - DAPR
   - defaultbackend
+  - distroless
   - distrubtion
   - ebpf
   - Ecommerce
@@ -39,11 +41,13 @@ words:
   - exceiting
   - experince
   - FDCWD
+  - flox
   - Gifort
   - giscus
   - gitops
   - godoc
   - Goroutines
+  - Groq
   - healthz
   - hostmachine
   - hostnames
@@ -69,8 +73,13 @@ words:
   - myrepository
   - NETGEAR
   - nmap
+  - nonroot
   - normallly
+  - OLLAMA
+  - Ollama
+  - ollama
   - openat
+  - openweb
   - openzipkin
   - opsnet
   - otelcol
@@ -78,6 +87,7 @@ words:
   - podsecuritypolicy
   - portforward
   - portforwarding
+  - println
   - pubsubname
   - raspberrypi
   - raspi
@@ -86,6 +96,7 @@ words:
   - rolebinding
   - sandboxed
   - Sandboxed
+  - Sandboxing
   - secretkey
   - serviceaccount
   - SPOF
