@@ -1,28 +1,45 @@
 {
-    "name": "Next.js Dev Container",
-    "dockerFile": "Dockerfile",
-    "context": "..",
-    "customizations": {
-        "vscode": {
-            "settings": {
-                "terminal.integrated.shell.linux": "/bin/zsh",
-                "editor.formatOnSave": true,
-                "cSpell.enabled": true,
-                "cSpell.language": "en",
-                "#cSpell.enabledLanguageIds": ["markdown"]
-            },
-            "extensions": [
-                "dbaeumer.vscode-eslint",
-                "esbenp.prettier-vscode",
-                "ms-vscode.vscode-typescript-next",
-                "ms-azuretools.vscode-docker",
-                "eamodio.gitlens",
-                "streetsidesoftware.code-spell-checker",
-                "shd101wyy.markdown-preview-enhanced"
-            ]
-        }
+  "name": "Next.js Dev Container",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.shell.linux": "/bin/zsh",
+        "editor.formatOnSave": true,
+        "files.insertFinalNewline": true,
+        "cSpell.enabled": true,
+        "cSpell.language": "en",
+        "#cSpell.enabledLanguageIds": ["markdown"],
+        "mcp": {
+          "servers": {
+            // "browsermcp": {
+            //   "command": "npx",
+            //   "args": ["@browsermcp/mcp@latest"]
+            // },
+            "context7": {
+              "command": "npx",
+              "args": ["-y", "@upstash/context7-mcp@latest"]
+            }
+          }
+        },
+        "git.enableCommitSigning": true
+      }
     },
-    "postCreateCommand": "npm install",
-    "forwardPorts": [3000],
-    "remoteUser": "node"
+    "extensions": [
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "ms-vscode.vscode-typescript-next",
+      "ms-azuretools.vscode-docker",
+      "streetsidesoftware.code-spell-checker"
+    ]
+  },
+  "postCreateCommand": "npm install",
+  "appPort": [3000],
+  "remoteUser": "node",
+  "containerEnv": {
+    "GITHUB_TOKEN": "${localEnv:GITHUB_TOKEN}"
+  }
 }

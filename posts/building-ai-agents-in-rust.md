@@ -3,6 +3,7 @@ title: 'Building AI Agents for Kubernetes Using the Inference Gateway (Rust SDK)
 linkText: 'Inference Gateway(Rust SDK)'
 date: 'Jan 22 2025'
 thumbnail: 'inference_gateway.png'
+image: 'inference_gateway.png'
 tags: 'linux, kubernetes, llm, ai, rust'
 excerpt: 'Artificial intelligence workloads have become a cornerstone of modern applications, and Kubernetes is at the forefront of container orchestration'
 draft: false
@@ -26,7 +27,8 @@ An open-source, high-performance gateway unifying multiple LLM providers, from l
 - Switch between different AI providers without changing your application code.
 - Leverage advanced features like load-balancing, custom request routing, and caching.
 - Standardize your AI inference calls through a single, cohesive API.
-  By deploying Inference Gateway in your Kubernetes cluster, you can manage, scale, and secure these inference endpoints more easily.
+
+By deploying Inference Gateway in your Kubernetes cluster, you can manage, scale, and secure these inference endpoints more easily.
 
 ## How to Use the Rust SDK
 

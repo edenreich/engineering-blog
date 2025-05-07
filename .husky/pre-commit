@@ -1,0 +1,43 @@
+#!/usr/bin/env sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "🚀 Running pre-commit checks..."
+
+# Get list of staged files
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.(js|jsx|ts|tsx|md|mdx)$' || echo '')
+
+if [ -z "$STAGED_FILES" ]; then
+  echo "No relevant files staged. Skipping checks."
+  exit 0
+fi
+
+# Run focused checks only on staged files when possible
+echo "🔍 Running ESLint..."
+npm run lint || {
+  echo "❌ ESLint check failed. Please fix the issues and try again."
+  exit 1
+}
+
+echo "💅 Checking code formatting..."
+npm run format:check || {
+  echo "❌ Prettier check failed. Run 'npm run format' to fix formatting issues."
+  exit 1
+}
+
+# Check if there are any staged markdown files
+if echo "$STAGED_FILES" | grep -q "\.md$"; then
+  echo "📝 Checking spelling in markdown files..."
+  npm run spellcheck || {
+    echo "❌ Spell check failed. Please fix the spelling issues in your markdown files."
+    exit 1
+  }
+fi
+
+# Only run thumbnail generation if there are new image files
+if git diff --cached --name-only | grep -q "public/img/posts/.*\.\(png\|jpg\|jpeg\|svg\)$"; then
+  echo "🖼️ Generating thumbnails for new images..."
+  npm run generate-thumbnails
+  git add public/img/posts/thumbnails/ || true
+fi
+
+echo "✅ All pre-commit checks passed!"

@@ -1,0 +1,19 @@
+{
+  "/": "2025-05-07",
+  "/about/": "2025-05-07",
+  "/contact/": "2025-05-07",
+  "/a-b-testing-with-nginx/": "2025-05-07",
+  "/argocd-preview-environments/": "2025-05-07",
+  "/build-a-blazing-fast-blog-using-nextjs-ssg/": "2025-05-07",
+  "/build-your-own-kubernetes-cluster-with-k3s/": "2025-05-07",
+  "/building-ai-agents-in-rust/": "2025-05-07",
+  "/debugging-with-strace-and-ptrace/": "2025-05-07",
+  "/decoupling-services-with-distributed-application-runtime/": "2025-05-07",
+  "/demystifying-llms-quantization/": "2025-05-07",
+  "/design-first-approach/": "2025-05-07",
+  "/infrastructure-as-data/": "2025-05-07",
+  "/kubernetes-for-local-development-with-kind/": "2025-05-07",
+  "/mcp-the-universal-protocol-revolutionizing-ai-integration/": "2025-05-07",
+  "/ollama-on-kubernetes/": "2025-05-07",
+  "/understanding-startup-probes-in-kubernetes-when-and-how-to-use-them/": "2025-05-07"
+}

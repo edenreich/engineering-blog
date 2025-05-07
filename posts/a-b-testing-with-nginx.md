@@ -4,6 +4,7 @@ linkText: 'A/B Testing with NGINX'
 description: 'A/B Testing with NGINX'
 date: 'December 11 2021'
 thumbnail: 'nginx.png'
+image: 'nginx.png'
 tags: 'testing'
 excerpt: "Many companies don't release a newer version of their product to customers before they are 100% sure that the newer version with all of its features works properly"
 draft: false

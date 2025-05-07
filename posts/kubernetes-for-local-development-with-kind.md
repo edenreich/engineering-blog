@@ -1,22 +1,23 @@
 ---
-title: 'Kubernetes for local development with Kubernetes in Docker(KinD)'
+title: 'Kubernetes for Local Development with Kubernetes in Docker (KinD)'
 linkText: 'KinD local environment'
 date: 'April 19 2020'
-thumbnail: 'thumbnail_kind.png'
+thumbnail: 'kind.png'
+image: 'kind.png'
 tags: 'kubernetes, development-tools'
-excerpt: "In this short tutorial we're going to create 3 node cluster with a Metal LB deployed so we can test our services locally..."
+excerpt: "In this short tutorial we're going to create 3 node cluster with a Metal LB deployed so we can test our services locally with minimal overhead."
+readingTime: 10
+author: 'Eden Reich'
 draft: false
 ---
 
 As we all know there are few tools out there to use the Kubernetes for local development, just to name a few - minikube, draft etc, however those tools are mostly consuming a lot of time to create, due to the fact they are creating nodes in a hardware based virtualization rather than process based virtualizations. The main advantage of using a process based virtualizations is the speed of the creation for those instances.
 
-![Kubernetes in Docker](/img/posts/kind.png 'KinD')
-
 In this short tutorial we're going to create 3 node cluster with a Metal LB deployed so we can test our services locally. duration of creating a cluster on the cloud is normally 5 to 10 min, whereas for us creating it locally should take at most 3 min, this is especially useful when you quickly want to test stuff.
 
 For simplicity purposes this tutorial is going to assume you're running these commands on a linux OS.
 
-## [Prerequisites](#prerequisites)
+## Prerequisites
 
 To start we need to have docker installed:
 
@@ -39,7 +40,7 @@ mkdir kind-tutorial
 cd kind-tutorial
 ```
 
-## [Create the cluster](#create-the-cluster)
+## Create the cluster
 
 In our project we'll create the manifest **kubernetes-local-cluster.yaml** that tells **KinD** how many nodes and of what type we need:
 
@@ -84,7 +85,7 @@ local-cluster-worker3         Ready    <none>   72s    v1.19.1
 
 Now that we've successfully created the kubernetes cluster locally, we need a way to be able to expose services. As you may know on a cloud environment of Kubernetes if you want to have a service exposed you'll set **type: LoadBalancer** on the service manifest and the kubernetes API will pickup the request using a k8s operator to provision a load-balancer by the cloud provider and associate it with your cluster. However on a local environment we don't have such API available and the k8s operator detect that you're using kubernetes on a bare metal and would simply leave the external ip address on pending status. We need a way to expose services to our local machine, to solve this issue we'll deploy MetalLB in our cluster, on the high level MetalLB providing us a way to load balance between the nodes (using speakers and ) targeting on-premises / bare metal servers, I won't get too deep into details because there is much more to it how this load balancer work and those are just implementation details, if you're curious you can always refer to the [documentation of Metal LB](https://metallb.universe.tf/).
 
-## [Deploy MetalLB](#deploy-metallb)
+## Deploy MetalLB
 
 To deploy MetalLB we can follow the docs on [MetalLB website](https://metallb.universe.tf/installation/):
 
