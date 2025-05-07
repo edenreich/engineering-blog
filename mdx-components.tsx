@@ -1,120 +1,332 @@
-
+"use client";
 
 import type { MDXComponents } from 'mdx/types';
-import Image from 'next/image';
-import Link from 'next/link';
-import { ReactNode } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
-const CodeSandbox = ({ id, title }: { id: string; title?: string }) => {
+import { Check, Copy, FileCode, ZoomIn } from 'lucide-react';
+
+import Prism from 'prismjs';
+// Language imports
+import 'prismjs/components/prism-bash';
+import 'prismjs/components/prism-javascript';
+import 'prismjs/components/prism-typescript';
+import 'prismjs/components/prism-jsx';
+import 'prismjs/components/prism-tsx';
+import 'prismjs/components/prism-json';
+import 'prismjs/components/prism-yaml';
+import 'prismjs/components/prism-markdown';
+import 'prismjs/components/prism-css';
+import 'prismjs/components/prism-python';
+import 'prismjs/components/prism-go';
+import 'prismjs/components/prism-rust';
+import 'prismjs/components/prism-shell-session';
+import 'prismjs/components/prism-http';
+// Plugins
+import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
+import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
+// Themes
+// import 'prismjs/themes/prism-tomorrow.css';
+// import 'prismjs/themes/prism.css';
+// import 'prismjs/themes/prism-dark.css';
+// import 'prismjs/themes/prism-okaidia.css';
+// import 'prismjs/themes/prism-twilight.css';
+import 'prismjs/themes/prism-coy.css';
+// import 'prismjs/themes/prism-funky.css';
+// import 'prismjs/themes/prism-solarizedlight.css';
+
+declare global {
+  interface Window {
+    Prism: {
+      highlightElement: (element: HTMLElement | null) => void;
+    };
+  }
+}
+
+const createSlug = (text: string) => {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9 ]/g, '')
+    .replace(/\s+/g, '-');
+};
+
+type HeadingProps = {
+  as: React.ElementType;
+  id?: string;
+  children: React.ReactNode;
+} & React.HTMLAttributes<HTMLHeadingElement>;
+const Heading = ({ as: Component, id, children, ...props }: HeadingProps) => {
+  const slug = id || createSlug(typeof children === 'string' ? children : '');
+  const headingRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && headingRef.current) {
+      const { hash } = window.location;
+      if (hash === `#${slug}`) {
+        headingRef.current.scrollIntoView();
+      }
+    }
+  }, [slug]);
+
   return (
-    <div className="my-6">
-      <p className="text-sm text-gray-500 mb-2">{title || 'Interactive Code Example'}</p>
-      <iframe
-        src={`https://codesandbox.io/embed/${id}?fontsize=14&theme=dark`}
-        style={{ width: '100%', height: '500px', border: 0, borderRadius: '4px', overflow: 'hidden' }}
-        title={title || 'Code Example'}
-        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-      ></iframe>
+    <Component id={slug} ref={headingRef} {...props}>
+      <a href={`#${slug}`} className="anchor-link">
+        {children}
+      </a>
+    </Component>
+  );
+};
+
+const MermaidDiagram = ({ children }: { children: string }) => {
+  const [svg, setSvg] = useState<string>('');
+  const [error, setError] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const mermaidRef = useRef<HTMLDivElement>(null);
+  const diagramId = useRef(`mermaid-${Math.random().toString(36).substring(2, 11)}`);
+
+  useEffect(() => {
+    const renderDiagram = async () => {
+      if (typeof window === 'undefined') return;
+
+      try {
+        const mermaid = (await import('mermaid')).default;
+
+        mermaid.initialize({
+          startOnLoad: false,
+          theme: 'neutral',
+          securityLevel: 'strict',
+          flowchart: { htmlLabels: true, curve: 'linear' },
+          themeVariables: {
+            primaryColor: '#3182ce',
+            primaryTextColor: '#ffffff',
+            primaryBorderColor: '#2b6cb0',
+            lineColor: '#4a5568',
+            secondaryColor: '#f7fafc',
+            tertiaryColor: '#edf2f7',
+          },
+        });
+
+        const { svg } = await mermaid.render(diagramId.current, children);
+        setSvg(svg);
+        setError(null);
+      } catch (err) {
+        console.error('Mermaid rendering error:', err);
+        setError(`Diagram rendering error`);
+      }
+    };
+
+    renderDiagram();
+  }, [children]);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  if (error) {
+    return (
+      <div className="mermaid-error p-4 border border-red-300 bg-red-50 text-red-800 rounded">
+        <p className="font-bold">Mermaid Diagram Error:</p>
+        <pre>{error}</pre>
+        <pre className="line-numbers mt-2 p-2 bg-gray-100 rounded overflow-auto">{children}</pre>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <div
+        className="mermaid-diagram my-6 relative group cursor-zoom-in border border-transparent hover:border-gray-200 rounded-lg p-2 transition-all"
+        onClick={handleOpenModal}
+        ref={mermaidRef}
+      >
+        <div className="absolute top-2 right-2 bg-white/80 p-1 rounded-full shadow opacity-0 group-hover:opacity-100 transition-opacity">
+          <ZoomIn className="h-4 w-4 text-gray-500" />
+        </div>
+        <div dangerouslySetInnerHTML={{ __html: svg }} />
+      </div>
+
+      {/* <ImageModal isOpen={isModalOpen} onClose={handleCloseModal} content={svg} title="Diagram" /> */}
+    </>
+  );
+};
+
+interface CodeBlockProps {
+  children: string;
+  className?: string;
+  filename?: string;
+}
+
+const CodeBlock = ({ children, className, filename }: CodeBlockProps) => {
+  const language = className?.replace(/language-/, '') || '';
+  const [copied, setCopied] = useState(false);
+  const codeRef = useRef<HTMLPreElement>(null);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      Prism.highlightAll();
+    }
+  }, [children]);
+
+  const copyToClipboard = async () => {
+    if (!codeRef.current?.textContent) return;
+
+    try {
+      await navigator.clipboard.writeText(codeRef.current.textContent);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (error) {
+      console.error('Failed to copy code to clipboard:', error);
+    }
+  };
+
+  const displayLang =
+    {
+      js: 'JavaScript',
+      jsx: 'JSX',
+      ts: 'TypeScript',
+      tsx: 'TSX',
+      bash: 'Terminal',
+      sh: 'Shell',
+      html: 'HTML',
+      css: 'CSS',
+      json: 'JSON',
+      yaml: 'YAML',
+      md: 'Markdown',
+      mdx: 'MDX',
+      http: 'HTTP',
+      rust: 'Rust',
+      go: 'Go',
+      py: 'Python',
+      python: 'Python',
+    }[language] || language.toUpperCase();
+
+  return (
+    <div className="my-6 group relative rounded-lg overflow-hidden border border-gray-200">
+      <div className="flex items-center justify-between bg-gray-100 px-4 py-2 text-xs text-gray-700">
+        <div className="flex items-center">
+          {filename && (
+            <div className="flex items-center text-gray-500 mr-2">
+              <FileCode className="mr-1.5 h-3.5 w-3.5" />
+              <span>{filename}</span>
+            </div>
+          )}
+        </div>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={copyToClipboard}
+            className="flex items-center rounded-md px-2 py-1 transition-colors text-gray-500 hover:text-gray-900 hover:bg-gray-200/50 focus:outline-none focus:ring-2 focus:ring-gray-400"
+            aria-label={copied ? 'Copied!' : 'Copy to clipboard'}
+          >
+            {copied ? (
+              <>
+                <Check className="h-3.5 w-3.5 mr-1" />
+                <span className="text-xs">Copied!</span>
+              </>
+            ) : (
+              <>
+                <Copy className="h-3.5 w-3.5 mr-1" />
+                <span className="text-xs">Copy</span>
+              </>
+            )}
+          </button>
+          <div className="font-mono">{displayLang}</div>
+        </div>
+      </div>
+
+      <div className="relative">
+        <pre
+          ref={codeRef}
+          className={`line-numbers overflow-x-auto p-4 text-sm leading-relaxed ${className}`}
+          tabIndex={0}
+        >
+          <code className={`language-${language}`}>{children}</code>
+        </pre>
+      </div>
     </div>
-  );
-};
-
-const Disclosure = ({
-  title,
-  children,
-  defaultOpen = false,
-}: {
-  title: string;
-  children: ReactNode;
-  defaultOpen?: boolean;
-}) => {
-  return (
-    <details className="my-4 border rounded-lg" open={defaultOpen}>
-      <summary className="cursor-pointer p-4 font-semibold bg-gray-50 hover:bg-gray-100 transition-colors">
-        {title}
-      </summary>
-      <div className="p-4">{children}</div>
-    </details>
-  );
-};
-
-const Tooltip = ({ text, children }: { text: string; children: ReactNode }) => {
-  return (
-    <span className="relative group inline-block">
-      <span className="cursor-help border-dotted border-b">{children}</span>
-      <span className="pointer-events-none absolute w-max max-w-xs bg-black text-white text-xs p-2 rounded opacity-0 group-hover:opacity-100 -translate-y-full -translate-x-1/2 left-1/2 top-0 transition-opacity">
-        {text}
-      </span>
-    </span>
   );
 };
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
-    img: (props: any) => (
-      <div className="my-6">
-        <Image
-          src={props.src}
-          alt={props.alt || 'Blog image'}
-          width={800}
-          height={500}
-          className="rounded-lg"
-          style={{
-            maxWidth: '100%',
-            height: 'auto',
-          }}
-        />
-        {props.alt && <p className="text-center text-sm mt-2">{props.alt}</p>}
-      </div>
-    ),
-    a: (props: any) => {
-      const href = props.href;
-      const isInternalLink = href && (href.startsWith('/') || href.startsWith('#'));
+    h1: (props) => <Heading as="h1" {...props} />,
+    h2: (props) => <Heading as="h2" {...props} />,
+    h3: (props) => <Heading as="h3" {...props} />,
+    h4: (props) => <Heading as="h4" {...props} />,
+    h5: (props) => <Heading as="h5" {...props} />,
+    h6: (props) => <Heading as="h6" {...props} />,
+    ol: (props) => <ol className="list-decimal pl-8 my-4 space-y-2" {...props} />,
+    ul: (props) => <ul className="list-disc pl-8 my-4 space-y-2" {...props} />,
+    li: (props) => <li className="pl-1" {...props} />,
+    pre: (props) => {
+      const children = props.children;
 
-      if (isInternalLink) {
+      if (
+        children &&
+        children.props &&
+        children.props.className &&
+        children.props.className.includes('language-mermaid')
+      ) {
+        return <MermaidDiagram>{children.props.children}</MermaidDiagram>;
+      }
+
+      if (
+        children &&
+        children.props &&
+        children.props.className &&
+        /language-/.test(children.props.className)
+      ) {
         return (
-          <Link href={href} className={props.className}>
-            {props.children}
-          </Link>
+          <CodeBlock
+            className={children.props.className}
+            filename={children.props.filename || children.props['data-filename']}
+          >
+            {children.props.children}
+          </CodeBlock>
         );
       }
 
-      return <a target="_blank" rel="noopener noreferrer" {...props} />;
+      return <pre {...props} />;
     },
-    h1: (props: any) => <h1 className="text-4xl font-bold mt-8 mb-4" {...props} />,
-    h2: (props: any) => <h2 className="text-3xl font-bold mt-8 mb-4" {...props} />,
-    h3: (props: any) => <h3 className="text-2xl font-bold mt-6 mb-3" {...props} />,
-    h4: (props: any) => <h4 className="text-xl font-bold mt-6 mb-3" {...props} />,
-    p: (props: any) => <p className="my-4" {...props} />,
-    ul: (props: any) => {
-      const { node, ...rest } = props;
-      return <ul className="list-disc ml-5 my-4" {...rest} />;
-    },
-    ol: (props: any) => {
-      const { node, ...rest } = props;
-      return <ol className="list-decimal ml-5 my-4" {...rest} />;
-    },
-    li: (props: any) => {
-      const { node, ...rest } = props;
-      return <li className="mb-1" {...rest} />;
-    },
-    blockquote: (props: any) => (
-      <blockquote className="border-l-4 border-gray-300 pl-4 italic my-4" {...props} />
-    ),
-    code: (props: any) => {
-      const { className } = props;
-      if (!className) {
-        return <code className="px-1 py-0.5 rounded font-mono text-sm" {...props} />;
+    a: ({ href, children, ...props }) => {
+      if (href?.startsWith('#')) {
+        return (
+          <a
+            href={href}
+            {...props}
+            onClick={(e) => {
+              e.preventDefault();
+              const targetId = href.replace('#', '');
+              const targetElement = document.getElementById(targetId);
+              if (targetElement) {
+                const headerOffset = 80;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                  top: offsetPosition,
+                  behavior: 'smooth',
+                });
+
+                window.history.pushState(null, '', href);
+              }
+            }}
+          >
+            {children}
+          </a>
+        );
       }
-      return <code className={`${className} block p-4 overflow-x-auto`} {...props} />;
+      return (
+        <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
+          {children}
+        </a>
+      );
     },
-    pre: (props: any) => <pre className="rounded-lg overflow-x-auto my-4" {...props} />,
-
-    CodeSandbox,
-    Disclosure,
-    Tooltip,
-
+    code: (props) => {
+      return <code {...props} />;
+    },
     ...components,
   };
 }

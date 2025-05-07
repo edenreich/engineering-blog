@@ -3,8 +3,7 @@ import { notFound } from 'next/navigation';
 import { getPostBySlug, getAllPosts } from '@/lib/mdx';
 import TagList from '@/components/TagList';
 import Comments from '@/components/Comments';
-import { MDXRemote } from 'next-mdx-remote/rsc';
-import { useMDXComponents } from '@/mdx-components';
+import MDXContent from '@/components/MDXContent';
 
 export async function generateStaticParams() {
   return getAllPosts();
@@ -23,8 +22,6 @@ export default async function PostPage({ params }: PageParams) {
     notFound();
   }
 
-  const components = useMDXComponents({});
-
   return (
     <Suspense fallback={<div className="container mx-auto p-8 h-64 flex items-center justify-center">Loading post...</div>}>
       <section className="blog-container">
@@ -38,10 +35,7 @@ export default async function PostPage({ params }: PageParams) {
 
         <div className="mt-8 mb-16 prose prose-lg max-w-none">
           {post.content ? (
-            <MDXRemote
-              source={post.content}
-              components={components}
-            />
+            <MDXContent source={post.content} />
           ) : (
             <div>No content available</div>
           )}
