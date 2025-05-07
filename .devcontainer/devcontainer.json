@@ -24,7 +24,8 @@
               "args": ["-y", "@upstash/context7-mcp@latest"]
             }
           }
-        }
+        },
+        "git.enableCommitSigning": true
       }
     },
     "extensions": [
