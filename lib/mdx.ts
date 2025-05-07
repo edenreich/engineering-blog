@@ -2,10 +2,12 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { Metadata, MarkdownPost } from '../types/MarkdownPost';
+import remarkGfm from 'remark-gfm';
+import rehypeHighlight from 'rehype-highlight';
 
 export type Post = MarkdownPost;
 
-export async function getAllPosts(): Promise<Post[]> {
+export async function getAllPosts(): Promise<{ slug: string }[]> {
   const postsDirectory = path.join(process.cwd(), 'posts');
   const fileNames = fs.readdirSync(postsDirectory);
 
@@ -13,33 +15,27 @@ export async function getAllPosts(): Promise<Post[]> {
     fileName.endsWith('.md') || fileName.endsWith('.mdx')
   );
 
-  const posts = markdownFiles.map((fileName) => {
+  return markdownFiles.map((fileName) => {
     const slug = fileName.replace(/\.(md|mdx)$/, '');
-
-    const fullPath = path.join(postsDirectory, fileName);
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
-
-    const { data, content } = matter(fileContents);
-
-    const metadata: Metadata = {
-      title: data.title as string,
-      linkText: data.linkText ? data.linkText : '' as string,
-      excerpt: data.excerpt as string,
-      thumbnail: data.thumbnail as string | undefined,
-      date: data.date as string,
-      tags: data.tags ? (data.tags as string).split(', ') : [],
-      draft: data.draft || false,
-    };
-
-    const isMarkdownX = fileName.endsWith('.mdx');
-
-    return {
-      slug,
-      metadata,
-      content,
-      isMarkdownX
-    };
+    return { slug };
   });
+}
+
+export async function getAllPostsWithMetadata(): Promise<Post[]> {
+  const postsDirectory = path.join(process.cwd(), 'posts');
+  const fileNames = fs.readdirSync(postsDirectory);
+
+  const markdownFiles = fileNames.filter(fileName =>
+    fileName.endsWith('.md') || fileName.endsWith('.mdx')
+  );
+
+  const postsPromises = markdownFiles.map(async (fileName) => {
+    const slug = fileName.replace(/\.(md|mdx)$/, '');
+    const post = await getPostBySlug(slug);
+    return post;
+  });
+
+  const posts = (await Promise.all(postsPromises)).filter(post => post !== null) as Post[];
 
   return posts.sort((a, b) => {
     const dateA = new Date(a.metadata.date);
@@ -49,7 +45,7 @@ export async function getAllPosts(): Promise<Post[]> {
 }
 
 export async function getAllTags(): Promise<string[]> {
-  const posts = await getAllPosts();
+  const posts = await getAllPostsWithMetadata();
   const allTags: string[] = [];
 
   posts.forEach(post => {
@@ -67,12 +63,12 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   try {
     const postsDirectory = path.join(process.cwd(), 'posts');
 
-    let fullPath = path.join(postsDirectory, `${slug}.md`);
-    let isMarkdownX = false;
+    let fullPath = path.join(postsDirectory, `${slug}.mdx`);
+    let isMarkdownX = true;
 
     if (!fs.existsSync(fullPath)) {
-      fullPath = path.join(postsDirectory, `${slug}.mdx`);
-      isMarkdownX = true;
+      fullPath = path.join(postsDirectory, `${slug}.md`);
+      isMarkdownX = false;
 
       if (!fs.existsSync(fullPath)) {
         return null;

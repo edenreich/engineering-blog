@@ -2,25 +2,22 @@ import Link from 'next/link';
 import Image from 'next/image';
 import TagList from '@/components/TagList';
 import TagFilter from '@/components/TagFilter';
-import { getAllPosts, getAllTags } from '@/lib';
+import { getAllPostsWithMetadata, getAllTags } from '@/lib';
 
 export const dynamic = 'force-static';
 
 export async function generateStaticParams() {
-  const tags = await getAllTags();
-  const params = [{ slug: undefined }];
-
-  return params;
+  return [{ slug: "/" }];
 }
 
-export default async function Home({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+type PageParams = {
+  params: Promise<{ slug: string }>
+}
+
+export default async function Home({ params }: PageParams) {
   const p = await params;
   const slug = p.slug;
-  const posts = await getAllPosts();
+  const posts = await getAllPostsWithMetadata();
   const tags = await getAllTags();
 
   const publishedPosts = posts.filter((post) => !post.metadata.draft && post.slug !== slug);

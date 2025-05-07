@@ -3,6 +3,11 @@ export async function getAllPosts() {
   return getAllPosts();
 }
 
+export async function getAllPostsWithMetadata() {
+  const { getAllPostsWithMetadata } = await import('./mdx');
+  return getAllPostsWithMetadata();
+}
+
 export async function getAllTags() {
   const { getAllTags } = await import('./mdx');
   return getAllTags();
