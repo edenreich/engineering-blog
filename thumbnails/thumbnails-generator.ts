@@ -52,8 +52,8 @@ async function createThumbnail(sourcePath: string, targetPath: string): Promise<
       .resize({
         width: THUMBNAIL_WIDTH,
         height: THUMBNAIL_HEIGHT,
-        fit: 'cover',
-        position: 'center',
+        fit: 'contain',
+        background: { r: 255, g: 255, b: 255, alpha: 1 },
       })
       .png({ quality: THUMBNAIL_QUALITY })
       .toFile(targetPath);
