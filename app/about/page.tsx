@@ -168,6 +168,20 @@ I can confidently attest to his senior-level expertise.`,
             </div>
           ))}
         </div>
+
+        <div className="mt-8 text-center">
+          <p className="mb-4 text-lg">
+            Read more testimonials from colleagues and clients who I&apos;ve worked with.
+          </p>
+          <Link
+            href="https://www.linkedin.com/in/eden-reich-411020100/details/recommendations/?detailScreenTabIndex=0"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cta-button inline-block"
+          >
+            View More on LinkedIn
+          </Link>
+        </div>
       </section>
 
       <section className="mb-16">
@@ -176,11 +190,11 @@ I can confidently attest to his senior-level expertise.`,
           <div>
             <h3 className="text-xl font-semibold mb-4">Languages</h3>
             <div className="space-y-1">
-              <ProgressBar color="#00ADD8" label="Go" value={70} />
-              <ProgressBar color="#dea584" label="Rust" value={70} />
+              <ProgressBar color="#00ADD8" label="Go" value={90} />
+              <ProgressBar color="#dea584" label="Rust" value={90} />
               <ProgressBar color="#3178c6" label="TypeScript" value={85} />
-              <ProgressBar color="#4F5D95" label="PHP" value={90} />
-              <ProgressBar color="#f34b7d" label="C++" value={90} />
+              <ProgressBar color="#4F5D95" label="PHP" value={80} />
+              <ProgressBar color="#f34b7d" label="C++" value={70} />
               <ProgressBar color="#178600" label="C#" value={70} />
             </div>
           </div>
@@ -189,6 +203,7 @@ I can confidently attest to his senior-level expertise.`,
             <div className="space-y-1">
               <ProgressBar color="#f1e05a" label="JavaScript" value={85} />
               <ProgressBar color="#563d7c" label="CSS" value={60} />
+              <ProgressBar color="#3572A5" label="Python" value={70} />
             </div>
           </div>
         </div>
