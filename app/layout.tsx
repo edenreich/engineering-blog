@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 export const metadata: Metadata = {
   title: 'Engineering Blog',
   description: 'A blog about software engineering and technology',
+  metadataBase: new URL('https://engineering-blog.eden-reich.com'),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

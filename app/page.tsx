@@ -83,11 +83,6 @@ export default async function Home({ params }: PageParams) {
 
   const publishedPosts = posts.filter(post => !post.metadata.draft && post.slug !== slug);
 
-  const postElements = publishedPosts.map(post => ({
-    slug: post.slug,
-    tags: post.metadata.tags,
-  }));
-
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Blog',
@@ -222,7 +217,7 @@ export default async function Home({ params }: PageParams) {
           })}
         </div>
 
-        <TagFilter postElements={postElements} />
+        <TagFilter />
       </div>
     </>
   );

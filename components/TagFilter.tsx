@@ -3,14 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 
-interface TagFilterProps {
-  postElements: {
-    slug: string;
-    tags: string[];
-  }[];
-}
-
-export default function TagFilter({ postElements }: TagFilterProps) {
+export default function TagFilter() {
   const searchParams = useSearchParams();
   const [, setActiveTag] = useState<string | null>(null);
 

@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import ProgressBar from '@/components/ProgressBar';
 
 type Testimonial = {
@@ -134,9 +135,10 @@ I can confidently attest to his senior-level expertise.`,
             <h2 className="text-3xl font-bold text-center mb-8">Who am I?</h2>
             <div className="prose lg:prose-lg">
               <p>
-                I'm a passionate software engineer with over 8 years of experience building robust
-                applications across multiple platforms and languages. Based in Berlin, I specialize
-                in creating efficient, scalable solutions for complex technical challenges.
+                I&apos;m a passionate software engineer with over 8 years of experience building
+                robust applications across multiple platforms and languages. Based in Berlin, I
+                specialize in creating efficient, scalable solutions for complex technical
+                challenges.
               </p>
               <p>
                 My approach combines deep technical knowledge with a keen understanding of user
@@ -144,8 +146,9 @@ I can confidently attest to his senior-level expertise.`,
                 exceptional user experience.
               </p>
               <p>
-                When I'm not coding, you can find me contributing to open-source projects, speaking
-                at tech conferences, or exploring the latest developments in software engineering.
+                When I&apos;m not coding, you can find me contributing to open-source projects,
+                speaking at tech conferences, or exploring the latest developments in software
+                engineering.
               </p>
             </div>
           </div>
@@ -248,14 +251,14 @@ I can confidently attest to his senior-level expertise.`,
       </section>
 
       <section className="text-center">
-        <h2 className="text-3xl font-bold mb-4">Let's Work Together</h2>
+        <h2 className="text-3xl font-bold mb-4">Let&apos;s Work Together</h2>
         <p className="mb-6 max-w-2xl mx-auto">
           Interested in collaborating on a project or discussing how my skills can help your
-          business? I'm always open to new challenges and opportunities.
+          business? I&apos;m always open to new challenges and opportunities.
         </p>
-        <a href="/contact" className="cta-button">
+        <Link href="/contact" className="cta-button">
           Get In Touch
-        </a>
+        </Link>
       </section>
     </div>
   );

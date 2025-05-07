@@ -6,7 +6,6 @@ import Comments from '@/components/Comments';
 import MDXContent from '@/components/MDXContent';
 import MDXImage from '@/components/MDXImage';
 import { Metadata as NextMetadata } from 'next';
-import Image from 'next/image';
 
 export async function generateMetadata({
   params,

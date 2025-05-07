@@ -8,7 +8,6 @@ interface PostProps {
   imageUrl: string;
   thumbnailUrl?: string;
   url: string;
-  linkText: string;
   tags?: string[];
 }
 
@@ -19,7 +18,6 @@ const Post: React.FC<PostProps> = ({
   imageUrl,
   thumbnailUrl,
   url,
-  linkText,
   tags = [],
 }) => {
   const displayImageUrl = thumbnailUrl || imageUrl;

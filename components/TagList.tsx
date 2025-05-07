@@ -5,10 +5,9 @@ import Link from 'next/link';
 
 interface TagListProps {
   initialTags: string[];
-  activeTag?: string;
 }
 
-const TagList: React.FC<TagListProps> = ({ initialTags = [], activeTag }) => {
+const TagList: React.FC<TagListProps> = ({ initialTags = [] }) => {
   const sortedTags = [...initialTags].sort();
 
   return (
