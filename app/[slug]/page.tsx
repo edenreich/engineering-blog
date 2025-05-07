@@ -7,8 +7,9 @@ import MDXContent from '@/components/MDXContent';
 import { Metadata as NextMetadata } from 'next';
 import Image from 'next/image';
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<NextMetadata> {
-  const post = await getPostBySlug(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<NextMetadata> {
+  const resolvedParams = await params;
+  const post = await getPostBySlug(resolvedParams.slug);
 
   if (!post) {
     return {
@@ -37,7 +38,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       title,
       description,
       type: 'article',
-      url: `https://engineering-blog.eden-reich.com/${params.slug}`,
+      url: `https://engineering-blog.eden-reich.com/${resolvedParams.slug}`,
       publishedTime: metadata.date,
       modifiedTime: typeof metadata.lastModified === 'string' ? metadata.lastModified : metadata.date,
       authors: typeof metadata.author === 'string' ? [metadata.author] : ['Engineering Team'],
@@ -60,7 +61,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     },
 
     alternates: {
-      canonical: `/${params.slug}`,
+      canonical: `/${resolvedParams.slug}`,
     },
   };
 }
