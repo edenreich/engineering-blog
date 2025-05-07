@@ -26,7 +26,6 @@ const eslintConfig = [
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
   {
     rules: {
-      // Fix the no-unused-expressions rule error
       '@typescript-eslint/no-unused-expressions': 'off',
     },
   },
