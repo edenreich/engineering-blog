@@ -6,20 +6,32 @@ interface PostProps {
   date: string;
   excerpt: string;
   imageUrl: string;
+  thumbnailUrl?: string;
   url: string;
   linkText: string;
   tags?: string[];
 }
 
-const Post: React.FC<PostProps> = ({ title, date, excerpt, imageUrl, url, linkText, tags = [] }) => {
+const Post: React.FC<PostProps> = ({
+  title,
+  date,
+  excerpt,
+  imageUrl,
+  thumbnailUrl,
+  url,
+  linkText,
+  tags = []
+}) => {
+  const displayImageUrl = thumbnailUrl || imageUrl;
+
   return (
     <div className="blog-post-card">
       <div className="relative w-full h-48">
         <Image
           fill
-          src={imageUrl}
+          src={displayImageUrl}
           alt={title}
-          className="blog-post-thumbnail"
+          className="blog-post-thumbnail object-cover"
           priority
         />
       </div>

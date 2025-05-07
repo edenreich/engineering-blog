@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "generate-sitemap": "tsx sitemap/generate.ts",
+    "generate-thumbnails": "tsx thumbnails/thumbnails-generator.ts",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -30,7 +31,8 @@
     "rehype-stringify": "^10.0.1",
     "remark-gfm": "^4.0.1",
     "remark-parse": "^11.0.0",
-    "remark-rehype": "^11.1.2"
+    "remark-rehype": "^11.1.2",
+    "sharp": "^0.34.1"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.16",
@@ -38,6 +40,7 @@
     "@types/prismjs": "^1.26.5",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
+    "@types/sharp": "^0.31.1",
     "autoprefixer": "^10.4.21",
     "cspell": "^9.0.0",
     "eslint": "^9.26.0",

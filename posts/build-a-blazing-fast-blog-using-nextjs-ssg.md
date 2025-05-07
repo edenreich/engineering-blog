@@ -3,6 +3,7 @@ title: 'NextJS Static Site Generator(SSG)'
 linkText: 'NextJS SSG'
 date: 'January 29 2022'
 thumbnail: 'nextjs.png'
+image: 'nextjs.png'
 tags: 'nextjs, ssg, javascript'
 excerpt: 'In this tutorial I want to cover how powerful raw HTML and Javascript could be, and how they could improve the speed of your website'
 draft: false

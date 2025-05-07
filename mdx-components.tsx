@@ -4,6 +4,7 @@ import type { MDXComponents } from 'mdx/types';
 import React, { useEffect, useRef, useState } from 'react';
 
 import { Check, Copy, FileCode, ZoomIn } from 'lucide-react';
+import MDXImage from '@/components/MDXImage';
 
 import Prism from 'prismjs';
 // Language imports
@@ -257,9 +258,21 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     h4: (props) => <Heading as="h4" {...props} />,
     h5: (props) => <Heading as="h5" {...props} />,
     h6: (props) => <Heading as="h6" {...props} />,
+    p: (props) => <React.Fragment {...props} />,
+    img: (props) => <MDXImage {...props} variant="full" />,
     ol: (props) => <ol className="list-decimal pl-8 my-4 space-y-2" {...props} />,
     ul: (props) => <ul className="list-disc pl-8 my-4 space-y-2" {...props} />,
     li: (props) => <li className="pl-1" {...props} />,
+    table: (props) => (
+      <div className="my-6 w-full overflow-x-auto rounded-md border border-gray-200">
+        <table className="w-full border-collapse text-sm" {...props} />
+      </div>
+    ),
+    thead: (props) => <thead className="bg-gray-100" {...props} />,
+    tbody: (props) => <tbody className="divide-y divide-gray-200" {...props} />,
+    tr: (props) => <tr className="border-b border-gray-200 last:border-b-0" {...props} />,
+    th: (props) => <th className="border-r last:border-r-0 px-4 py-3 text-left font-semibold text-gray-700" {...props} />,
+    td: (props) => <td className="border-r last:border-r-0 px-4 py-3 align-top text-gray-700" {...props} />,
     pre: (props) => {
       const children = props.children;
 

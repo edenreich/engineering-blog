@@ -145,12 +145,8 @@ export default async function Home({ params }: PageParams) {
         </div>
 
         <div className="blog-posts-grid" id="posts-container">
-          {publishedPosts.map((post) => {
-            const imagePath = post.metadata.thumbnail ?
-              (post.metadata.thumbnail.startsWith('/img/posts/') ?
-                post.metadata.thumbnail :
-                `/img/posts/${post.metadata.thumbnail}`) :
-              '/img/pencil.png';
+          {publishedPosts.map((post, index) => {
+            const imagePath = `/img/posts/thumbnails/${post.metadata.thumbnail}`
 
             return (
               <div
@@ -158,13 +154,15 @@ export default async function Home({ params }: PageParams) {
                 className="blog-post-card"
                 data-tags={post.metadata.tags.map(t => t.trim()).join(',')}
               >
-                <div className="h-48 relative">
+                <div className="h-48 overflow-hidden relative rounded-t-lg">
                   <Image
                     src={imagePath}
                     alt={post.metadata.title}
                     fill
-                    className="object-cover"
-                    priority={publishedPosts.indexOf(post) < 3}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover hover:scale-105 transition-transform duration-300"
+                    priority={index < 3}
+                    loading={index < 3 ? "eager" : "lazy"}
                   />
                 </div>
 

@@ -2,7 +2,8 @@
 title: 'MCP: The Universal Protocol Revolutionizing AI Integration'
 linkText: 'MCP: The Universal Protocol Revolutionizing AI Integration'
 date: 'May 5 2025'
-thumbnail: '/img/posts/mcp.png'
+thumbnail: 'mcp.png'
+image: 'mcp.png'
 tags: 'ai, mcp, integration, development'
 excerpt: 'Breaking down how the Model Context Protocol is changing AI integration'
 draft: false

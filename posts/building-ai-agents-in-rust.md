@@ -3,6 +3,7 @@ title: 'Building AI Agents for Kubernetes Using the Inference Gateway (Rust SDK)
 linkText: 'Inference Gateway(Rust SDK)'
 date: 'Jan 22 2025'
 thumbnail: 'inference_gateway.png'
+image: 'inference_gateway.png'
 tags: 'linux, kubernetes, llm, ai, rust'
 excerpt: 'Artificial intelligence workloads have become a cornerstone of modern applications, and Kubernetes is at the forefront of container orchestration'
 draft: false

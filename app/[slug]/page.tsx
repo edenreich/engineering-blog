@@ -4,6 +4,7 @@ import { getPostBySlug, getAllPosts } from '@/lib/mdx';
 import TagList from '@/components/TagList';
 import Comments from '@/components/Comments';
 import MDXContent from '@/components/MDXContent';
+import MDXImage from '@/components/MDXImage';
 import { Metadata as NextMetadata } from 'next';
 import Image from 'next/image';
 
@@ -22,11 +23,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const title = metadata.title;
   const description = metadata.excerpt;
 
-  const imageUrl = metadata.thumbnail
-    ? (metadata.thumbnail.startsWith('/img/')
-      ? `https://engineering-blog.eden-reich.com${metadata.thumbnail}`
-      : `https://engineering-blog.eden-reich.com/img/posts/${metadata.thumbnail}`)
-    : 'https://engineering-blog.eden-reich.com/img/posts/nextjs.png';
+  // Prioritize image over thumbnail for social media sharing
+  const shareImage = metadata.image || metadata.thumbnail || 'nextjs.png';
+  const imageUrl = shareImage.startsWith('/img/')
+    ? `https://engineering-blog.eden-reich.com${shareImage}`
+    : `https://engineering-blog.eden-reich.com/img/posts/${shareImage}`;
 
   return {
     title: `${title} | Engineering Blog`,
@@ -88,14 +89,19 @@ export default async function PostPage({ params }: PageParams) {
     ? new Date(post.metadata.lastModified).toISOString()
     : publishDate;
 
+  // Prioritize image over thumbnail for SEO structured data
+  const postImage = post.metadata.image || post.metadata.thumbnail;
+  console.log('Post Image:', post.metadata.image);
+  const structuredDataImage = postImage
+    ? `https://engineering-blog.eden-reich.com/img/posts/${postImage}`
+    : 'https://engineering-blog.eden-reich.com/img/posts/nextjs.png';
+
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: post.metadata.title,
     description: post.metadata.excerpt,
-    image: post.metadata.thumbnail
-      ? `https://engineering-blog.eden-reich.com/img/posts/${post.metadata.thumbnail}`
-      : 'https://engineering-blog.eden-reich.com/img/posts/nextjs.png',
+    image: structuredDataImage,
     datePublished: publishDate,
     dateModified: modifiedDate,
     author: {
@@ -117,11 +123,8 @@ export default async function PostPage({ params }: PageParams) {
     keywords: post.metadata.tags.join(', ')
   };
 
-  const heroImage = post.metadata.thumbnail
-    ? (post.metadata.thumbnail.startsWith('/img/posts/')
-      ? post.metadata.thumbnail
-      : `/img/posts/${post.metadata.thumbnail}`)
-    : null;
+  // Get the hero image source (either full article image or thumbnail)
+  const heroImageSource = post.metadata.image || post.metadata.thumbnail;
 
   return (
     <Suspense fallback={<div className="container mx-auto p-8 h-64 flex items-center justify-center">Loading post...</div>}>
@@ -167,14 +170,13 @@ export default async function PostPage({ params }: PageParams) {
             </div>
           </div>
 
-          {heroImage && (
-            <div className="mt-6 mb-8 relative aspect-video">
-              <Image
-                src={heroImage}
+          {heroImageSource && (
+            <div className="mt-6 mb-8">
+              <MDXImage
+                src={heroImageSource}
                 alt={`Cover image for ${post.metadata.title}`}
-                fill
-                className="object-cover rounded-lg"
-                priority={true}
+                variant="full"
+                className="w-full"
               />
             </div>
           )}

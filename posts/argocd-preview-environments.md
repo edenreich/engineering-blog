@@ -4,6 +4,7 @@ linkText: 'ArgoCD Preview Environments'
 description: 'ArgoCD Preview Environments'
 date: 'March 10 2024'
 thumbnail: 'argocd.png'
+image: 'argocd.png'
 tags: 'gitops, kubernetes'
 excerpt: 'ArgoCD is a declarative, GitOps continuous delivery tool for Kubernetes.'
 draft: false

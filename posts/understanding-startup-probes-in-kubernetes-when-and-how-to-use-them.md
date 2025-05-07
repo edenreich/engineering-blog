@@ -3,6 +3,7 @@ title: 'The Forgotten Kubernetes Probes: Understanding Startup Probes and Their 
 linkText: 'Startup probes'
 date: 'May 28 2024'
 thumbnail: 'kubernetes.png'
+image: 'kubernetes.png'
 tags: 'kubernetes, optimization'
 excerpt: 'While liveness and readiness probes are widely discussed, startup probes are equally crucial, particularly for applications with significant initialization times. This article delves into startup probes, explaining their purpose, configuration, and common practices.'
 draft: false

@@ -56,6 +56,7 @@ export async function fetchMarkdownPosts(): Promise<MarkdownPost[]> {
         linkText: data.linkText ? data.linkText : '' as string,
         excerpt: data.excerpt as string,
         thumbnail: data.thumbnail as string | undefined,
+        image: data.image as string | undefined, // Add support for full article image
         date: data.date as string,
         tags: data.tags.split(', '),
       };

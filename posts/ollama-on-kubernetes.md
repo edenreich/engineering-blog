@@ -3,6 +3,7 @@ title: 'Running LLMs on Kubernetes with Ollama'
 linkText: 'Running LLMs on Kubernetes with Ollama'
 date: 'December 31 2024'
 thumbnail: 'ollama_kubernetes.png'
+image: 'ollama_kubernetes.png'
 tags: 'kubernetes, llm, ai'
 excerpt: 'Orchestrating LLMs on Kubernetes with Ollama'
 draft: false

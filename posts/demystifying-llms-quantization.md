@@ -3,6 +3,7 @@ title: 'Quantization Explained: Making AI Efficient with a Simple Spice Rack Ana
 linkText: 'LLMs Quantization'
 date: 'Dec 29 2024'
 thumbnail: 'quantization.png'
+image: 'quantization.png'
 tags: 'ai, ml, llm, optimization'
 excerpt: "A Fun, Simple Explanation! In this article, we'll break down the concept of quantization"
 draft: false

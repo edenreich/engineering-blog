@@ -2,9 +2,11 @@ export interface Metadata {
   title: string;
   linkText: string;
   excerpt: string;
-  thumbnail?: string;
   date: string;
   tags: string[];
+  image?: string;
+  thumbnail?: string;
+  readingTime?: string;
   [key: string]: unknown;
 }
 

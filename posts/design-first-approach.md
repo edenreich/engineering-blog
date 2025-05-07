@@ -3,6 +3,7 @@ title: 'Design-First approach with OpenAPI'
 linkText: 'Design-First approach'
 date: 'May 12 2024'
 thumbnail: 'openapi.png'
+image: 'openapi.png'
 tags: 'openapi, api, sdl'
 excerpt: 'Explore why a shift from code annotations to plain OpenAPI Specification (OAS) enhances API design and development processes.'
 draft: false

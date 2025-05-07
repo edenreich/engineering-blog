@@ -2,7 +2,8 @@
 title: 'Build your own Kubernetes Cluster with K3S'
 linkText: 'K3S'
 date: 'June 19 2020'
-thumbnail: 'thumbnail_raspberry_pi_cluster.jpeg'
+thumbnail: 'raspberry_pi_cluster.png'
+image: 'raspberry_pi_cluster.jpeg'
 tags: 'k3s, kubernetes, raspberry pi, bare-metal'
 excerpt: "Creating your own kubernetes cluster on raspberry pi doesn't take much effort and it was a fun experience..."
 draft: false
@@ -10,9 +11,7 @@ draft: false
 
 Creating your own kubernetes cluster on raspberry pi doesn't take much effort and it was a fun experience, in fact this blog at the time of writing this article is hosted on home made kubernetes. In this article i'm going to walk you through the process of having a production ready environment at your home.
 
-![Raspberry pi cluster](/img/posts/raspberry_pi_cluster.jpeg 'Raspberry pi cluster')
-
-## [Prerequisites](#prerequisites)
+## Prerequisites
 
 You'll need to purchase the following equipment in order to follow along (budget of around 600$, on the long run it pays off):
 
@@ -30,7 +29,7 @@ You would also need a cloudflare account, so we can put it in front of our clust
 
 P.S: I'm not committing to any of the above prices and dealers please make your own decisions regarding the purchase, these links are just to give you an idea of what I'm using to make it work.
 
-## [Getting Started](#getting-started)
+## Getting Started
 
 Once your order with all of these parts arrived we can start by building the cluster.
 

@@ -3,6 +3,7 @@ title: 'Infrastructure as Data'
 linkText: 'Infrastructure as Data'
 date: 'December 04 2021'
 thumbnail: 'yaml_files.png'
+image: 'yaml_files.png'
 tags: 'kubernetes, gitops'
 excerpt: "Infrastructure as Data (IaD) isn't a new concept, it just gain a bit more popularity and attention since Kubernetes and Serverless started to appear"
 draft: false

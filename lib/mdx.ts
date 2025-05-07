@@ -80,6 +80,7 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
       title: data.title as string,
       linkText: data.linkText ? data.linkText : '' as string,
       excerpt: data.excerpt as string,
+      image: data.image as string | undefined,
       thumbnail: data.thumbnail as string | undefined,
       date: data.date as string,
       tags: data.tags ? (data.tags as string).split(', ') : [],
