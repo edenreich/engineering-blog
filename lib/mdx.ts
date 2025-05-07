@@ -6,100 +6,100 @@ import { Metadata, MarkdownPost } from '../types/MarkdownPost';
 export type Post = MarkdownPost;
 
 export async function getAllPosts(): Promise<Post[]> {
-    const postsDirectory = path.join(process.cwd(), 'posts');
-    const fileNames = fs.readdirSync(postsDirectory);
+  const postsDirectory = path.join(process.cwd(), 'posts');
+  const fileNames = fs.readdirSync(postsDirectory);
 
-    const markdownFiles = fileNames.filter(fileName =>
-        fileName.endsWith('.md') || fileName.endsWith('.mdx')
-    );
+  const markdownFiles = fileNames.filter(fileName =>
+    fileName.endsWith('.md') || fileName.endsWith('.mdx')
+  );
 
-    const posts = markdownFiles.map((fileName) => {
-        const slug = fileName.replace(/\.(md|mdx)$/, '');
+  const posts = markdownFiles.map((fileName) => {
+    const slug = fileName.replace(/\.(md|mdx)$/, '');
 
-        const fullPath = path.join(postsDirectory, fileName);
-        const fileContents = fs.readFileSync(fullPath, 'utf8');
+    const fullPath = path.join(postsDirectory, fileName);
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
 
-        const { data, content } = matter(fileContents);
+    const { data, content } = matter(fileContents);
 
-        const metadata: Metadata = {
-            title: data.title as string,
-            linkText: data.linkText ? data.linkText : '' as string,
-            excerpt: data.excerpt as string,
-            thumbnail: data.thumbnail as string | undefined,
-            date: data.date as string,
-            tags: data.tags ? (data.tags as string).split(', ') : [],
-            draft: data.draft || false,
-        };
+    const metadata: Metadata = {
+      title: data.title as string,
+      linkText: data.linkText ? data.linkText : '' as string,
+      excerpt: data.excerpt as string,
+      thumbnail: data.thumbnail as string | undefined,
+      date: data.date as string,
+      tags: data.tags ? (data.tags as string).split(', ') : [],
+      draft: data.draft || false,
+    };
 
-        const isMarkdownX = fileName.endsWith('.mdx');
+    const isMarkdownX = fileName.endsWith('.mdx');
 
-        return {
-            slug,
-            metadata,
-            content,
-            isMarkdownX
-        };
-    });
+    return {
+      slug,
+      metadata,
+      content,
+      isMarkdownX
+    };
+  });
 
-    return posts.sort((a, b) => {
-        const dateA = new Date(a.metadata.date);
-        const dateB = new Date(b.metadata.date);
-        return dateB.getTime() - dateA.getTime();
-    });
+  return posts.sort((a, b) => {
+    const dateA = new Date(a.metadata.date);
+    const dateB = new Date(b.metadata.date);
+    return dateB.getTime() - dateA.getTime();
+  });
 }
 
 export async function getAllTags(): Promise<string[]> {
-    const posts = await getAllPosts();
-    const allTags: string[] = [];
+  const posts = await getAllPosts();
+  const allTags: string[] = [];
 
-    posts.forEach(post => {
-        post.metadata.tags.forEach(tag => {
-            if (!allTags.includes(tag)) {
-                allTags.push(tag);
-            }
-        });
+  posts.forEach(post => {
+    post.metadata.tags.forEach(tag => {
+      if (!allTags.includes(tag)) {
+        allTags.push(tag);
+      }
     });
+  });
 
-    return allTags;
+  return allTags;
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {
-    try {
-        const postsDirectory = path.join(process.cwd(), 'posts');
+  try {
+    const postsDirectory = path.join(process.cwd(), 'posts');
 
-        let fullPath = path.join(postsDirectory, `${slug}.md`);
-        let isMarkdownX = false;
+    let fullPath = path.join(postsDirectory, `${slug}.md`);
+    let isMarkdownX = false;
 
-        if (!fs.existsSync(fullPath)) {
-            fullPath = path.join(postsDirectory, `${slug}.mdx`);
-            isMarkdownX = true;
+    if (!fs.existsSync(fullPath)) {
+      fullPath = path.join(postsDirectory, `${slug}.mdx`);
+      isMarkdownX = true;
 
-            if (!fs.existsSync(fullPath)) {
-                return null;
-            }
-        }
-
-        const fileContents = fs.readFileSync(fullPath, 'utf8');
-        const { data, content } = matter(fileContents);
-
-        const metadata: Metadata = {
-            title: data.title as string,
-            linkText: data.linkText ? data.linkText : '' as string,
-            excerpt: data.excerpt as string,
-            thumbnail: data.thumbnail as string | undefined,
-            date: data.date as string,
-            tags: data.tags ? (data.tags as string).split(', ') : [],
-            draft: data.draft || false,
-        };
-
-        return {
-            slug,
-            metadata,
-            content,
-            isMarkdownX
-        };
-    } catch (error) {
-        console.error(`Error getting post with slug ${slug}:`, error);
+      if (!fs.existsSync(fullPath)) {
         return null;
+      }
     }
+
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
+    const { data, content } = matter(fileContents);
+
+    const metadata: Metadata = {
+      title: data.title as string,
+      linkText: data.linkText ? data.linkText : '' as string,
+      excerpt: data.excerpt as string,
+      thumbnail: data.thumbnail as string | undefined,
+      date: data.date as string,
+      tags: data.tags ? (data.tags as string).split(', ') : [],
+      draft: data.draft || false,
+    };
+
+    return {
+      slug,
+      metadata,
+      content,
+      isMarkdownX
+    };
+  } catch (error) {
+    console.error(`Error getting post with slug ${slug}:`, error);
+    return null;
+  }
 }
