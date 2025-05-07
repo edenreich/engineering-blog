@@ -15,7 +15,7 @@ const TagList: React.FC<TagListProps> = ({
   const sortedTags = [...initialTags].sort();
 
   return (
-    <div className="blog-post-tags flex flex-wrap justify-center gap-2 max-w-3xl">
+    <div className="blog-post-tags flex flex-wrap justify-center gap-2 w-full">
       {sortedTags.map((tag, index) => (
         <Link
           key={index}
