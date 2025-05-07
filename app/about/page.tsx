@@ -168,17 +168,17 @@ I can confidently attest to his senior-level expertise.`,
 
           <h3 className="text-2xl font-bold mb-4">Languages</h3>
           <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <span>German</span>
-              <span className="italic">Fluent</span>
+            <div className="flex items-center justify-between border-b pb-2">
+              <span className="font-medium">German</span>
+              <span className="italic text-gray-700">Fluent</span>
             </div>
-            <div className="flex items-center justify-between">
-              <span>English</span>
-              <span className="italic">Fluent</span>
+            <div className="flex items-center justify-between border-b pb-2">
+              <span className="font-medium">English</span>
+              <span className="italic text-gray-700">Fluent</span>
             </div>
-            <div className="flex items-center justify-between">
-              <span>Hebrew</span>
-              <span className="italic">Native</span>
+            <div className="flex items-center justify-between border-b pb-2">
+              <span className="font-medium">Hebrew</span>
+              <span className="italic text-gray-700">Native</span>
             </div>
           </div>
         </div>
