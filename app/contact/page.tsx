@@ -3,17 +3,45 @@
 import { useState } from 'react';
 
 export default function ContactPage() {
-  const [showNotification, setShowNotification] = useState(false);
+  const [showSuccessNotification, setShowSuccessNotification] = useState(false);
+  const [showErrorNotification, setShowErrorNotification] = useState(false);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    setShowNotification(true);
+    const formData = new FormData(event.currentTarget);
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const message = formData.get('message');
+
+    fetch('https://edenreich.app.n8n.cloud/webhook/181836c1-34d1-499b-a811-9f5cd5514528', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        message,
+      }),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        setShowSuccessNotification(true);
+        return response.json();
+      })
+      .catch(error => {
+        setShowErrorNotification(true);
+        console.error('Error:', error);
+      });
 
     event.currentTarget.reset();
 
     setTimeout(() => {
-      setShowNotification(false);
+      setShowSuccessNotification(false);
+      setShowErrorNotification(false);
     }, 13000);
   };
 
@@ -64,8 +92,13 @@ export default function ContactPage() {
           </button>
         </form>
 
-        {showNotification && (
-          <div className="contact-form-notification">Please use Linkedin to contact me.</div>
+        {showSuccessNotification && (
+          <div className="contact-form-notification-success">Message sent successfully!</div>
+        )}
+        {showErrorNotification && (
+          <div className="contact-form-notification-error">
+            There was an error sending your message.
+          </div>
         )}
       </div>
     </div>

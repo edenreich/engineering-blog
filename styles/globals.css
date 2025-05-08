@@ -794,7 +794,18 @@ header a:hover {
   color: var(--color-gray-400);
 }
 
-.contact-form-notification {
+.contact-form-notification-success {
+  background-color: var(--success-color);
+  color: var(--color-white);
+  padding: var(--space-3) var(--space-4);
+  margin-top: var(--space-4);
+  border-radius: var(--radius-md);
+  font-weight: var(--font-weight-medium);
+  text-align: center;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.contact-form-notification-error {
   background-color: var(--error-color);
   color: var(--color-white);
   padding: var(--space-3) var(--space-4);
