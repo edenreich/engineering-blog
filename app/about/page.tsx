@@ -98,6 +98,7 @@ I can confidently attest to his senior-level expertise.`,
       'Chef',
     ],
     IoT: ['FPV Drones', 'Micro-controllers'],
+    Workflows: ['n8n', 'zapier'],
     Methodologies: [
       'GitOps',
       'DevOps',
