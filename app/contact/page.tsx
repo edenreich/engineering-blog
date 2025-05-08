@@ -13,6 +13,10 @@ export default function ContactPage() {
     const name = formData.get('name');
     const email = formData.get('email');
     const message = formData.get('message');
+    if (!name || !email || !message) {
+      setShowErrorNotification(true);
+      return;
+    }
 
     fetch('https://edenreich.app.n8n.cloud/webhook/181836c1-34d1-499b-a811-9f5cd5514528', {
       method: 'POST',
@@ -58,6 +62,7 @@ export default function ContactPage() {
             <input
               type="text"
               id="name"
+              name="name"
               className="contact-form-input"
               placeholder="Your name"
               required
@@ -70,6 +75,7 @@ export default function ContactPage() {
             <input
               type="email"
               id="email"
+              name="email"
               className="contact-form-input"
               placeholder="your.email@example.com"
               required
@@ -81,6 +87,7 @@ export default function ContactPage() {
             </label>
             <textarea
               id="message"
+              name="message"
               rows={5}
               className="contact-form-input"
               placeholder="Type your message here..."
