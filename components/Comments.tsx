@@ -6,7 +6,6 @@ export default function Comments() {
   return (
     <section className="blog-container mb-16">
       <div className="border-t pt-8">
-        <h3 className="text-2xl font-semibold mb-6">Comments</h3>
         <Giscus
           repo="edenreich/engineering-blog"
           repoId="R_kgDOLeQUkA"
