@@ -5,6 +5,7 @@ import TagList from '@/components/TagList';
 import Comments from '@/components/Comments';
 import MDXContent from '@/components/MDXContent';
 import MDXImage from '@/components/MDXImage';
+import TableOfContents from '@/components/TableOfContents';
 import { Metadata as NextMetadata } from 'next';
 
 export async function generateMetadata({
@@ -94,7 +95,6 @@ export default async function PostPage({ params }: PageParams) {
       ? new Date(post.metadata.lastModified).toISOString()
       : publishDate;
 
-  // Prioritize image over thumbnail for SEO structured data
   const postImage = post.metadata.image || post.metadata.thumbnail;
   console.log('Post Image:', post.metadata.image);
   const structuredDataImage = postImage
@@ -128,7 +128,6 @@ export default async function PostPage({ params }: PageParams) {
     keywords: post.metadata.tags.join(', '),
   };
 
-  // Get the hero image source (either full article image or thumbnail)
   const heroImageSource = post.metadata.image || post.metadata.thumbnail;
 
   return (
@@ -144,70 +143,76 @@ export default async function PostPage({ params }: PageParams) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
-      <section className="blog-container">
-        <div className="blog-post-header">
-          <div className="mb-6">
-            <p className="text-sm text-gray-600 mb-2">
-              Published on{' '}
-              <time dateTime={new Date(post.metadata.date).toISOString().split('T')[0]}>
-                {post.metadata.date}
-              </time>
-              {typeof post.metadata.lastModified === 'string' && (
-                <>
-                  {' · '}Updated on{' '}
-                  <time dateTime={new Date(post.metadata.lastModified).toISOString().split('T')[0]}>
-                    {post.metadata.lastModified}
-                  </time>
-                </>
-              )}
-              {typeof post.metadata.readingTime === 'number' && (
-                <span className="ml-3">· {post.metadata.readingTime} min read</span>
-              )}
-              {typeof post.metadata.readingTime === 'string' && (
-                <span className="ml-3">· {post.metadata.readingTime} min read</span>
-              )}
-            </p>
-
-            <h1 className="text-4xl font-bold">{post.metadata.title}</h1>
-
-            {typeof post.metadata.author === 'string' && (
-              <p className="mt-2">
-                By <span className="font-medium">{post.metadata.author}</span>
+      <div className="relative">
+        <section className="blog-container">
+          <div className="blog-post-header">
+            <div className="mb-6">
+              <p className="text-sm text-gray-600 mb-2">
+                Published on{' '}
+                <time dateTime={new Date(post.metadata.date).toISOString().split('T')[0]}>
+                  {post.metadata.date}
+                </time>
+                {typeof post.metadata.lastModified === 'string' && (
+                  <>
+                    {' · '}Updated on{' '}
+                    <time
+                      dateTime={new Date(post.metadata.lastModified).toISOString().split('T')[0]}
+                    >
+                      {post.metadata.lastModified}
+                    </time>
+                  </>
+                )}
+                {typeof post.metadata.readingTime === 'number' && (
+                  <span className="ml-3">· {post.metadata.readingTime} min read</span>
+                )}
+                {typeof post.metadata.readingTime === 'string' && (
+                  <span className="ml-3">· {post.metadata.readingTime} min read</span>
+                )}
               </p>
+
+              <h1 className="text-4xl font-bold">{post.metadata.title}</h1>
+
+              {typeof post.metadata.author === 'string' && (
+                <p className="mt-2">
+                  By <span className="font-medium">{post.metadata.author}</span>
+                </p>
+              )}
+
+              <div className="mt-4">
+                <TagList initialTags={post.metadata.tags} />
+              </div>
+            </div>
+
+            {heroImageSource && (
+              <div className="mt-6 mb-8">
+                <MDXImage
+                  src={heroImageSource}
+                  alt={`Cover image for ${post.metadata.title}`}
+                  variant="full"
+                  className="w-full"
+                />
+              </div>
             )}
 
-            <div className="mt-4">
-              <TagList initialTags={post.metadata.tags} />
-            </div>
+            {post.metadata.excerpt && (
+              <div className="my-6 bg-gray-50 p-6 rounded-lg border-l-4 border-accent-color">
+                <p className="text-lg italic">{post.metadata.excerpt}</p>
+              </div>
+            )}
           </div>
 
-          {heroImageSource && (
-            <div className="mt-6 mb-8">
-              <MDXImage
-                src={heroImageSource}
-                alt={`Cover image for ${post.metadata.title}`}
-                variant="full"
-                className="w-full"
-              />
-            </div>
-          )}
+          <article className="mt-8 mb-16 prose prose-lg max-w-none">
+            {post.content ? <MDXContent source={post.content} /> : <div>No content available</div>}
+          </article>
 
-          {post.metadata.excerpt && (
-            <div className="my-6 bg-gray-50 p-6 rounded-lg border-l-4 border-accent-color">
-              <p className="text-lg italic">{post.metadata.excerpt}</p>
-            </div>
-          )}
-        </div>
-
-        <article className="mt-8 mb-16 prose prose-lg max-w-none">
-          {post.content ? <MDXContent source={post.content} /> : <div>No content available</div>}
-        </article>
-
-        <section className="mt-16">
-          <h2 className="text-2xl font-bold mb-6">Comments</h2>
-          <Comments />
+          <section className="mt-16">
+            <h2 className="text-2xl font-bold mb-6">Comments</h2>
+            <Comments />
+          </section>
         </section>
-      </section>
+
+        <TableOfContents />
+      </div>
     </Suspense>
   );
 }

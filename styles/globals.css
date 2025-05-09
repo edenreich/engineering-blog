@@ -652,7 +652,7 @@ p > code {
   padding: var(--space-4) 0;
   border-bottom: 1px solid var(--border-color);
   background-color: var(--nav-bg-color);
-  color: var(--nav-text-color);
+  color: var (--nav-text-color);
 }
 
 .nav-links {
@@ -796,7 +796,7 @@ header a:hover {
 
 .contact-form-notification-success {
   background-color: var(--success-color);
-  color: var(--color-white);
+  color: var (--color-white);
   padding: var(--space-3) var(--space-4);
   margin-top: var(--space-4);
   border-radius: var(--radius-md);
@@ -808,7 +808,7 @@ header a:hover {
 .contact-form-notification-error {
   background-color: var(--error-color);
   color: var(--color-white);
-  padding: var(--space-3) var(--space-4);
+  padding: var (--space-3) var(--space-4);
   margin-top: var(--space-4);
   border-radius: var(--radius-md);
   font-weight: var(--font-weight-medium);
@@ -832,6 +832,120 @@ header a:hover {
 .contact-form .cta-button {
   width: 100%;
   margin-top: var(--space-2);
+}
+
+/***************************************
+ * TABLE OF CONTENTS
+ ***************************************/
+
+.table-of-contents {
+  position: relative;
+  z-index: 10;
+}
+
+.toc-container {
+  background-color: var(--background-color);
+  border-left: 2px solid var(--border-color);
+  padding-left: var(--space-4);
+  padding-top: var(--space-4);
+  padding-bottom: var(--space-4);
+  border-radius: var(--radius-md);
+  transition:
+    background-color var(--transition-base),
+    border-color var(--transition-base);
+  max-height: 70vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gray-400) transparent;
+  box-shadow: var(--shadow-sm);
+}
+
+.toc-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.toc-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.toc-container::-webkit-scrollbar-thumb {
+  background-color: var(--color-gray-400);
+  border-radius: var(--radius-full);
+}
+
+.toc-container h3 {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--heading-color);
+  margin-bottom: var(--space-3);
+  transition: color var(--transition-base);
+}
+
+.toc-container ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.toc-container li {
+  margin-left: 0;
+  margin-bottom: var(--space-2);
+  transition: color var(--transition-base);
+}
+
+.toc-container a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  display: block;
+  padding: var(--space-1) 0;
+  transition: color var(--transition-base);
+}
+
+.toc-container a:hover {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+.toc-container li.active a {
+  color: var(--accent-color);
+  font-weight: var(--font-weight-medium);
+}
+
+.toc-container li.active {
+  color: var(--accent-color);
+}
+
+/* Ensure Table of Contents is only visible on desktop screens */
+@media (max-width: 1023px) {
+  .table-of-contents {
+    display: none !important;
+  }
+}
+
+/* Make sure the TOC positioning is correct */
+@media (min-width: 1024px) {
+  .table-of-contents {
+    display: block !important;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .toc-container {
+    position: fixed;
+    right: 2rem;
+    top: 120px;
+    width: 250px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .toc-container {
+    right: calc((100vw - var(--container-width)) / 2 - 280px);
+  }
 }
 
 /***************************************
